@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView
 from .models import Article
 
 
-class BookListView(ListView):
+class ArticlesList(ListView):
     model = Article
     template_name = ''  # unfinished
     context_object_name = 'articles'
@@ -14,7 +14,7 @@ class BookListView(ListView):
         return Article.objects.order_by('-created_at')[:10]
 
 
-class BookDetailView(DetailView):
+class ArticleView(DetailView):
     model = Article
     template_name = ''  # unfinished
     context_object_name = 'articles'
