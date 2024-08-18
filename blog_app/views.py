@@ -3,9 +3,9 @@ from django.views.generic import ListView, DetailView
 from .models import Article
 
 
-class ArticlesList(ListView):
+class ArticleListView(ListView):
     model = Article
-    template_name = ''  # unfinished
+    template_name = 'blog_app/article_detail.html'  # unfinished
     context_object_name = 'articles'
 
     def get_queryset(self):
@@ -14,10 +14,10 @@ class ArticlesList(ListView):
         return Article.objects.order_by('-created_at')[:10]
 
 
-class ArticleView(DetailView):
+class ArticleDetailView(DetailView):
     model = Article
-    template_name = ''  # unfinished
-    context_object_name = 'articles'
+    template_name = 'blog_app/article_detail.html'  # unfinished
+    context_object_name = 'article'
 
 
 
