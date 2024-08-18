@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pouria's Blog</title>
+</head>
+<body>
+<h1> Freshest Articles! </h1>
+<ul>
+    {% for article in articles %}
+        <li>
+            <a href="{% url 'blog_app:article_detail'  article.id %}">{{ article.title }}</a>
+            by {{ article.authors }}, Published on {{ article.created_at }}
+        {% if article.updated_at != article.created_at %}
+          (updated on {{ article.updated_at }}</li>
+        {% endif %}
+    {% empty %}
+        <li>No books available.</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

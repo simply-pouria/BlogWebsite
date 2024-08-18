@@ -2,19 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pouria's Blog</title>
+    <title>{{article.title}}</title>
 </head>
 <body>
-<h1> Freshest Articles! </h1>
-<ul>
-    {% for article in articles %}
-        <li> {{ article.title }} by {{ article.authors }}, Published on {{ article.created_at }}
+    <h1>
+        {{article.title}}
+    </h1>
+
+    <h6>
+        {{ article.title }} by {{ article.authors }}, Published on {{ article.created_at }}
         {% if article.updated_at != article.created_at %}
-          (updated on {{ article.updated_at) }}</li>
+          (updated on {{ article.updated_at) }}
         {% endif %}
-    {% empty %}
-        <li>No books available.</li>
-    {% endfor %}
-</ul>
+    </h6>
+
+    <p>
+        {{article.body}}
+    </p>
 </body>
 </html>

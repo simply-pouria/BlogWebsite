@@ -1,10 +1,10 @@
 
 from django.contrib import admin
 from django.urls import path
-from .views import ArticleListView, ArticleDetailView
+from blog_app.views import ArticleListView, ArticleDetailView
 
 urlpatterns = [
-    path('admin/<int:pk>', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', ArticleListView.as_view(), name='home'),
-    path('article/', ArticleDetailView.as_view(), name='article'),
+    path('article/<int:pk>', ArticleDetailView.as_view(), name='article'),
 ]
