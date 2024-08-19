@@ -1,12 +1,7 @@
-
 from django.contrib import admin
-from django.urls import path
-from blog_app.views import ArticleListView, ArticleDetailView
-
-app_name = 'blog_app'
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', ArticleListView.as_view(), name='home'),
-    path('article/<int:pk>', ArticleDetailView.as_view(), name='article'),
+    path('', include('blog_app.urls')),  # Include blog_app's URLs with its namespace
 ]

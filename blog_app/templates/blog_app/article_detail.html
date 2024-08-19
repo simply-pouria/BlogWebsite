@@ -2,22 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{article.title}}</title>
+    <title>{{ article.title }}</title>
 </head>
 <body>
     <h1>
-        {{article.title}}
+        {{ article.title }}
     </h1>
 
     <h6>
-        {{ article.title }} by {{ article.authors }}, Published on {{ article.created_at }}
+        {{ article.title }} by
+        {% for author in article.authors.all %}
+            {{ author.user.username }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}, Published on {{ article.created_at }}
         {% if article.updated_at != article.created_at %}
-          (updated on {{ article.updated_at) }}
+          (updated on {{ article.updated_at }})
         {% endif %}
     </h6>
 
     <p>
-        {{article.body}}
+        {{ article.body }}
     </p>
 </body>
 </html>

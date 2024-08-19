@@ -9,10 +9,14 @@
 <ul>
     {% for article in articles %}
         <li>
-            <a href="{% url 'blog_app:article'  article.id %}">{{ article.title }}</a>
-            by {{ article.authors }}, Published on {{ article.created_at }}
+            <a href="{% url 'blog_app:ArticleView' article.id %}">{{ article.title }}</a>
+            by
+            {% for author in article.authors.all %}
+                {{ author.user.username }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+            , Published on {{ article.created_at }}
         {% if article.updated_at != article.created_at %}
-          (updated on {{ article.updated_at }}</li>
+          (updated on {{ article.updated_at }})</li>
         {% endif %}
     {% empty %}
         <p>No books available.</p>
