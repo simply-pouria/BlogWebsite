@@ -6,8 +6,7 @@ from .models import User, UserProfile
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        default_role = Role.objects.get_or_create(name='user')[0]  # Ensure a default role exists
-        UserProfile.objects.create(user=instance, role=default_role)
+        UserProfile.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)

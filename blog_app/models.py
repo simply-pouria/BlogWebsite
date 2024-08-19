@@ -7,9 +7,17 @@ from django.dispatch import receiver
 
 
 class UserProfile(models.Model):
+
+    USER = 0
+    ADMIN = 1
+    ROLE_CHOICES = [
+        (USER, 'User'),
+        (ADMIN, 'Admin'),
+    ]
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    authors = models.ManyToManyField('Article', through='AuthoredThrough')
-    role = models.CharField(max_length=100,)
+    # a user is able to have not authored an article
+    authored = models.ManyToManyField('Article', through='AuthoredThrough', blank=True)
+    role = models.IntegerField(default=USER, choices=ROLE_CHOICES)
 
     def __str__(self):
         return self.user.username
@@ -21,7 +29,7 @@ class Article(models.Model):
             validators=[MinLengthValidator(4, "Title must be greater than 4 characters")],
     )
     body = models.TextField(null=True)
-    authors = models.ManyToManyField('UserProfile', through='AuthoredThrough')
+    authors = models.ManyToManyField('UserProfile', through='AuthoredThrough', blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
