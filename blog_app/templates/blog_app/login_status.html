@@ -1,0 +1,12 @@
+
+    {% if user.is_authenticated %}
+    <p>
+        you're logged in as {{user.username}}
+        <a href="url logout">Logout</a>
+    </p>
+    {% else %}
+    <p>
+        you're not logged in
+        <a href="url login">Login</a>
+    </p>
+    {% endif %}
