@@ -21,8 +21,10 @@
 
     <p>
         {{ article.body }}
-    </p>
 
-    {% include "login_status.html" %}
+    </p>
+    <a href="{% url 'blog_app:Home' %}">go back to article list</a>
+
+    {% include "blog_app/login_status.html" %}
 </body>
 </html>
