@@ -16,11 +16,26 @@ class ArticleListView(ListView):
         # and limit the number of results to 10
         return Article.objects.order_by('-created_at')[:10]
 
+    # adding the additional context from Userprofile model that is needed to show/hide the "create" button
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        context['role'] = UserProfile.role.filter(id=self.request.user.id)
+        return context
+
 
 class ArticleDetailView(DetailView):
     model = Article
     template_name = 'blog_app/article_detail.html'
     context_object_name = 'article'
+
+    # adding the additional context from Userprofile model that is needed to show/hide the "update" button
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        context['role'] = UserProfile.role.filter(id=self.request.user.id)
+        return context
+
 
 
 class ArticleCreateView(RoleRequiredMixin, CreateView):
