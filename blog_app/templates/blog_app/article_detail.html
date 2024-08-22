@@ -26,5 +26,10 @@
     <a href="{% url 'blog_app:Home' %}">go back to article list</a>
 
     {% include "blog_app/login_status.html" %}
+
+{% if role.role == 1 %}
+<a href="{% url 'blog_app:article_update article.id'%}"></a>
+{%endif%}
+
 </body>
 </html>
