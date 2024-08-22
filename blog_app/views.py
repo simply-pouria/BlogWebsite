@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from .models import Article, UserProfile
+from .models import Article, UserProfile, AuthoredThrough
 from utilities import RoleRequiredMixin
 from django.http import HttpResponseForbidden
 
@@ -24,7 +24,7 @@ class ArticleDetailView(DetailView):
 
 
 class ArticleCreateView(RoleRequiredMixin, CreateView):
-    required_role = 'Admin'
+    required_role = UserProfile.ADMIN
     model = Article
     fields = ["title", "body"]
     template_name = 'blog_app/article_create.html'
@@ -32,9 +32,18 @@ class ArticleCreateView(RoleRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('article_detail', kwargs={'pk': self.object.pk})
 
+    def form_valid(self, form):
+        # Save the article first to get the instance
+        response = super().form_valid(form)
+        # Add the current user as an author of the article
+        authored = AuthoredThrough(author=self.request.user.userprofile, article=self.object)
+        authored.save()
+
+        return response  # to ensure get_success_url works
+
 
 class ArticleUpdateView(RoleRequiredMixin, UpdateView):
-    required_role = 'Admin'
+    required_role = UserProfile.ADMIN
     model = Article
     fields = ["title", "body"]
 
@@ -46,7 +55,19 @@ class ArticleUpdateView(RoleRequiredMixin, UpdateView):
     template_name = 'blog_app/article_update.html'
 
     def get_success_url(self):
+        authored = AuthoredThrough(author=self.request.user, article=self.object)
+        authored.save()
         return reverse_lazy('article_detail', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        # Save the article first to get the instance
+        response = super().form_valid(form)
+        # Add the current user as an author of the article
+        authored = AuthoredThrough(author=self.request.user.userprofile, article=self.object)
+        authored.save()
+
+        return response  # to ensure get_success_url works
+
 
 
 
