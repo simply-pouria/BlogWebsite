@@ -24,9 +24,10 @@
 </ul>
 <p>{% include "blog_app/login_status.html" %}</p>
 
-{% if role.role == 1 %}
-<a href="{% url 'blog_app:article_create'%}"></a>
+{% if user_role %}
+{% if userprofile.role == ADMIN_ROLE %}
+<a href="{% url 'blog_app:article_create' %}">Add an Article!</a>
 {%endif%}
-
+{%endif%}
 </body>
 </html>

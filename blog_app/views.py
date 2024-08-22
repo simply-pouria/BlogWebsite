@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
@@ -20,8 +21,14 @@ class ArticleListView(ListView):
     def get_context_data(self, **kwargs):
 
         context = super().get_context_data(**kwargs)
-        context['role'] = UserProfile.role.filter(id=self.request.user.id)
-        return context
+        if self.request.user.is_authenticated:
+            user_profile = UserProfile.objects.get(user=self.request.user)
+            context['user_role'] = user_profile.role
+        else:
+            context['user_role'] = None
+
+        context['ADMIN_ROLE'] = UserProfile.ADMIN
+
 
 
 class ArticleDetailView(DetailView):
@@ -33,12 +40,17 @@ class ArticleDetailView(DetailView):
     def get_context_data(self, **kwargs):
 
         context = super().get_context_data(**kwargs)
-        context['role'] = UserProfile.role.filter(id=self.request.user.id)
-        return context
+        if self.request.user.is_authenticated:
+            user_profile = UserProfile.objects.get(user=self.request.user)
+            context['user_role'] = user_profile.role
+        else:
+            context['user_role'] = None
+
+        context['ADMIN_ROLE'] = UserProfile.ADMIN
 
 
 
-class ArticleCreateView(RoleRequiredMixin, CreateView):
+class ArticleCreateView(RoleRequiredMixin, LoginRequiredMixin, CreateView):
     required_role = UserProfile.ADMIN
     model = Article
     fields = ["title", "body"]
@@ -57,7 +69,7 @@ class ArticleCreateView(RoleRequiredMixin, CreateView):
         return response  # to ensure get_success_url works
 
 
-class ArticleUpdateView(RoleRequiredMixin, UpdateView):
+class ArticleUpdateView(RoleRequiredMixin, LoginRequiredMixin, UpdateView):
     required_role = UserProfile.ADMIN
     model = Article
     fields = ["title", "body"]
