@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from .models import Article
+from .models import Article, UserProfile
+from utilities import RoleRequiredMixin
+from django.http import HttpResponseForbidden
 
 
 class ArticleListView(ListView):
@@ -21,7 +23,8 @@ class ArticleDetailView(DetailView):
     context_object_name = 'article'
 
 
-class ArticleCreateView(CreateView):
+class ArticleCreateView(RoleRequiredMixin, CreateView):
+    required_role = 'Admin'
     model = Article
     fields = ["title", "body"]
     template_name = 'blog_app/article_create.html'
@@ -30,9 +33,16 @@ class ArticleCreateView(CreateView):
         return reverse_lazy('article_detail', kwargs={'pk': self.object.pk})
 
 
-class ArticleUpdateView(UpdateView):
+class ArticleUpdateView(RoleRequiredMixin, UpdateView):
+    required_role = 'Admin'
     model = Article
     fields = ["title", "body"]
+
+    # to protect data from non-admins on a database_level
+    def get_queryset(self):
+        if self.request.user.userprofile.role == UserProfile.USER:
+            return HttpResponseForbidden("This page is only accessible for admins.")
+        return super().get_queryset()
     template_name = 'blog_app/article_update.html'
 
     def get_success_url(self):
