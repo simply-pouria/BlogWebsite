@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Article, UserProfile, AuthoredThrough
-from utilities import RoleRequiredMixin
+from .utilities import RoleRequiredMixin
 from django.http import HttpResponseForbidden
 
 

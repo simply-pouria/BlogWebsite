@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Writing an Article</title>
 </head>
 <body>
+    <h1>Writing an Article</h1>
 
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create the Article!</button>
+    </form>
 </body>
 </html>

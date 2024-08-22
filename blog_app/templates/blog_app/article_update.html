@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Updating {{  object.title }}</title>
 </head>
 <body>
+    <h1>Updating {{  object.title }}</h1>
 
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit Changes</button>
+    </form>
 </body>
 </html>
