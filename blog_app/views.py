@@ -60,15 +60,22 @@ class ArticleCreateView(RoleRequiredMixin, LoginRequiredMixin, CreateView):
     template_name = 'blog_app/article_create.html'
 
     def get_success_url(self):
-        return reverse_lazy('article_detail', kwargs={'pk': self.object.pk})
+        return reverse_lazy('blog_app:article_detail', kwargs={'pk': self.object.pk})
 
-    # saving user to the database automatically
+    # saving user to the database automatically, if not duplicate
     def form_valid(self, form):
         # Save the article first to get the instance
         response = super().form_valid(form)
-        # Add the current user as an author of the article
-        authored = AuthoredThrough(author=self.request.user.userprofile, article=self.object)
-        authored.save()
+
+        # Check if the author-article relationship already exists
+        authored_exists = AuthoredThrough.objects.filter(
+            author=self.request.user.userprofile,
+            article=self.object
+        ).exists()
+
+        if not authored_exists:
+            authored = AuthoredThrough(author=self.request.user.userprofile, article=self.object)
+            authored.save()
 
         return response  # to ensure get_success_url works
 
@@ -77,18 +84,16 @@ class ArticleUpdateView(RoleRequiredMixin, LoginRequiredMixin, UpdateView):
     required_role = UserProfile.ADMIN
     model = Article
     fields = ["title", "body"]
+    template_name = 'blog_app/article_update.html'
 
     # to protect data from non-admins on a database_level
     def get_queryset(self):
         if self.request.user.userprofile.role == UserProfile.USER:
             return HttpResponseForbidden("This page is only accessible for admins.")
         return super().get_queryset()
-    template_name = 'blog_app/article_update.html'
 
     def get_success_url(self):
-        authored = AuthoredThrough(author=self.request.user, article=self.object)
-        authored.save()
-        return reverse_lazy('article_detail', kwargs={'pk': self.object.pk})
+        return reverse_lazy('blog_app:article_detail', kwargs={'pk': self.object.pk})
 
     def form_valid(self, form):
         # Save the article first to get the instance

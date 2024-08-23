@@ -23,12 +23,12 @@
         {{ article.body }}
 
     </p>
-    <a href="{% url 'blog_app:Home' %}">go back to article list</a>
+    <a href="{% url 'blog_app:article_list' %}">go back to article list</a>
 
     {% include "blog_app/login_status.html" %}
 
 {% if user_role == ADMIN_ROLE %}
-<a href="{% url 'blog_app:article_update article.id'%}"></a>
+<a href="{% url 'blog_app:article_update' pk=article.pk %}">Edit Article</a>
 {%endif%}
 
 </body>
