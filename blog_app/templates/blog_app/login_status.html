@@ -8,5 +8,8 @@
     <p>
         you're not logged in
         <a href="{% url 'login' %}?next={{ request.path }}">Login</a>
+        don't have an account yet?
+        <a href="{% url 'blog_app:signup' %}">Sign Up</a>
+
     </p>
     {% endif %}

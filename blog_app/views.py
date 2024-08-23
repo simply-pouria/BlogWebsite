@@ -1,11 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Article, UserProfile, AuthoredThrough
 from .utilities import RoleRequiredMixin
 from django.http import HttpResponseForbidden
-
+from django.contrib.auth.forms import UserCreationForm
 
 class ArticleListView(ListView):
     model = Article
@@ -62,22 +61,16 @@ class ArticleCreateView(RoleRequiredMixin, LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('blog_app:article_detail', kwargs={'pk': self.object.pk})
 
-    # saving user to the database automatically, if not duplicate
+    # saving user to the database automatically
     def form_valid(self, form):
         # Save the article first to get the instance
         response = super().form_valid(form)
 
-        # Check if the author-article relationship already exists
-        authored_exists = AuthoredThrough.objects.filter(
-            author=self.request.user.userprofile,
-            article=self.object
-        ).exists()
+        # Add the current user as an author of the article
+        authored = AuthoredThrough(author=self.request.user.userprofile, article=self.object)
+        authored.save()
 
-        if not authored_exists:
-            authored = AuthoredThrough(author=self.request.user.userprofile, article=self.object)
-            authored.save()
-
-        return response  # to ensure get_success_url works
+        return response  # to ensure get_success_url() works as intended
 
 
 class ArticleUpdateView(RoleRequiredMixin, LoginRequiredMixin, UpdateView):
@@ -95,14 +88,28 @@ class ArticleUpdateView(RoleRequiredMixin, LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('blog_app:article_detail', kwargs={'pk': self.object.pk})
 
+    # saving user to the database automatically, if not duplicate
     def form_valid(self, form):
         # Save the article first to get the instance
         response = super().form_valid(form)
-        # Add the current user as an author of the article
-        authored = AuthoredThrough(author=self.request.user.userprofile, article=self.object)
-        authored.save()
+        # Check if the author-article relationship already exists, if it doesn't add it
+        authored_exists = AuthoredThrough.objects.filter(
+            author=self.request.user.userprofile,
+            article=self.object
+        ).exists()
 
-        return response  # to ensure get_success_url() works as intended
+        if not authored_exists:
+            authored = AuthoredThrough(author=self.request.user.userprofile, article=self.object)
+            authored.save()
+
+        return response  # to ensure get_success_url works as intended
+
+
+class SignUpView(CreateView):
+    form_class = UserCreationForm
+    template_name = 'registration/signup.html'
+    success_url = reverse_lazy('login')  # Redirect to login page after successful sign-up
+
 
 
 
