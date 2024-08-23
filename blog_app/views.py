@@ -29,6 +29,8 @@ class ArticleListView(ListView):
 
         context['ADMIN_ROLE'] = UserProfile.ADMIN
 
+        return context
+
 
 
 class ArticleDetailView(DetailView):
@@ -48,6 +50,7 @@ class ArticleDetailView(DetailView):
 
         context['ADMIN_ROLE'] = UserProfile.ADMIN
 
+        return context
 
 
 class ArticleCreateView(RoleRequiredMixin, LoginRequiredMixin, CreateView):
@@ -59,6 +62,7 @@ class ArticleCreateView(RoleRequiredMixin, LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('article_detail', kwargs={'pk': self.object.pk})
 
+    # saving user to the database automatically
     def form_valid(self, form):
         # Save the article first to get the instance
         response = super().form_valid(form)
@@ -93,7 +97,7 @@ class ArticleUpdateView(RoleRequiredMixin, LoginRequiredMixin, UpdateView):
         authored = AuthoredThrough(author=self.request.user.userprofile, article=self.object)
         authored.save()
 
-        return response  # to ensure get_success_url works
+        return response  # to ensure get_success_url() works as intended
 
 
 

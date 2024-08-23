@@ -27,7 +27,7 @@
 
     {% include "blog_app/login_status.html" %}
 
-{% if userprofile.role == ADMIN_ROLE %}
+{% if user_role == ADMIN_ROLE %}
 <a href="{% url 'blog_app:article_update article.id'%}"></a>
 {%endif%}
 
