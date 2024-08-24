@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Article, UserProfile, AuthoredThrough
 from .utilities import RoleRequiredMixin
 from django.http import HttpResponseForbidden
@@ -105,10 +105,18 @@ class ArticleUpdateView(RoleRequiredMixin, LoginRequiredMixin, UpdateView):
         return response  # to ensure get_success_url works as intended
 
 
-class SignUpView(CreateView):
+class ArticleSignUpView(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('login')  # Redirect to login page after successful sign-up
+
+
+class ArticleDeleteView(RoleRequiredMixin, DeleteView):
+    required_role = UserProfile.ADMIN
+    model = Article
+    template_name = 'blog_app/article_confirm_delete.html'
+    success_url = reverse_lazy('blog_app:article_list')
+
 
 
 

@@ -29,6 +29,8 @@
 
 {% if user_role == ADMIN_ROLE %}
 <a href="{% url 'blog_app:article_update' pk=article.pk %}">Edit Article</a>
+    <a href="{% url 'blog_app:article_delete' article.pk %}">Delete Article</a>
+
 {%endif%}
 
 </body>
