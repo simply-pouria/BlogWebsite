@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <title>Pouria's Blog</title>
+
+  <!-- custom CSS for overriding Materialize -->
+<style>
+    .nav-wrapper .brand-logo img {
+      max-height: 64px; /* Ensure the image height doesn't exceed the navbar */
+      width: auto; /* Maintain aspect ratio */
+      vertical-align: middle; /* Center the image vertically */
+    }
+
+    /* Center the brand logo vertically within the navbar */
+    .nav-wrapper .brand-logo {
+      display: flex;
+      align-items: center;
+    }
+</style>
+
+</head>
+
+ <!-- navbar -->
+<body>
+  <div class="navbar-fixed">
+    <nav class="nav-wrapper grey darken-4">
+      <div class="container">
+        <a href="#" class="brand-logo">
+            <img src="images/name.png" alt="" class="responsive-img">
+        </a>
+        <a href="#" class="sidenav-trigger" data-target="mobile-links">
+          <i class="material-icons teal-text">menu</i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="" class="teal-text text-accent-2">Contact :)</a></li>
+          <li><a href="" class="teal-text text-accent-2">About Me</a></li>
+          <li><a href="" class="btn teal lighten-2 grey-text text-darken-4">Login <3 </a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <!-- sidebar -->
+  <ul class="sidenav grey darken-4" id="mobile-links">
+      <li><a href="" class="teal-text text-accent-2">Contact :)</a></li>
+      <li><a href="" class="teal-text text-accent-2">About Me</a></li>
+      <li><a href="" class="btn teal lighten-2 grey-text text-darken-4">Login <3 </a></li>
+  </ul>
+
+  <!-- jQuery for sidebar -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('.sidenav').sidenav();
+    });
+  </script>
+
+</html>
+

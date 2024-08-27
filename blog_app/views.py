@@ -13,8 +13,8 @@ class ArticleListView(ListView):
 
     def get_queryset(self):
         # Order by published_date in descending order (most recent first)
-        # and limit the number of results to 10
-        return Article.objects.order_by('-created_at')[:10]
+        # and limit the number of results to 3
+        return Article.objects.order_by('-created_at')[:3]
 
     # adding the additional context from Userprofile model that is needed to show/hide the "create" button
     def get_context_data(self, **kwargs):
