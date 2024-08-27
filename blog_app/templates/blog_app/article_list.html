@@ -1,86 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
+<!-- importing Materialize, Font Awsome, and Google Icon Font -->
     <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- font awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
     <title>Pouria's Blog</title>
 
-    <style>
+<!-- custom CSS for overriding Materialize -->
+<style>
 
-.nav-wrapper .brand-logo img {
-  max-height: 64px; /* Ensure the image height doesn't exceed the navbar */
-  width: auto; /* Maintain aspect ratio */
-  vertical-align: middle; /* Center the image vertically */
-}
+    
+    .nav-wrapper .brand-logo img {
+      max-height: 64px; /* Ensure the image height doesn't exceed the navbar */
+      width: auto; /* Maintain aspect ratio */
+      vertical-align: middle; /* Center the image vertically */
+    }
 
-/* Center the brand logo vertically within the navbar */
-.nav-wrapper .brand-logo {
-  display: flex;
-  align-items: center;
-}
+    /* Center the brand logo vertically within the navbar */
+    .nav-wrapper .brand-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-wrapper .brand-logo img {
+      max-height: 64px; /* Ensure the image height doesn't exceed the navbar */
+      width: auto; /* Maintain aspect ratio */
+      vertical-align: middle; /* Center the image vertically */
+    }
+
+    /* Center the brand logo vertically within the navbar */
+    .nav-wrapper .brand-logo {
+      display: flex;
+      align-items: center;
+    }
+
+
+    /* Custom multi-line truncation (Materialize has only one-line) */
+    .multi-line-truncate {
+      display: -webkit-box;
+      -webkit-line-clamp: 5; /* Number of lines to show before truncating */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
 
 </style>
-
 </head>
+
+<!-- navbar -->
 <body>
   <div class="navbar-fixed">
     <nav class="nav-wrapper grey darken-4">
       <div class="container">
         <a href="#" class="brand-logo">
-            <img src="images/name.png" alt="" class="responsive-img">
+            <img src="{% static 'blog_app/images/name.png' %}" alt="" class="responsive-img">
         </a>
         <a href="#" class="sidenav-trigger" data-target="mobile-links">
           <i class="material-icons teal-text">menu</i>
         </a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="" class="teal-text text-accent-2">Contact :)</a></li>
-          <li><a href="" class="teal-text text-accent-2">About Me</a></li>
-          <li><a href="" class="btn teal lighten-2 grey-text text-darken-4">Login <3 </a></li>
+          <li><a href="" class="teal-text text-accent-2">Contact ^^</a></li>
+          <li><a href="" class="teal-text text-accent-2">About Me <3</a></li>
+          <li>
+              {% if user.is_authenticated %}
+              <a href="{% url 'logout' %}?next={{ request.path }}" class="teal-text text-accent-2">
+                  Wanna Log out
+                  <span class="amber-text text-lighten-1">{{user.username}}</span>? :(
+              </a>
+              {% else %}
+              <a href="{% url 'login' %}?next={{ request.path }}"
+                 class="btn teal lighten-2 grey-text text-darken-4">Login :) </a>
+              {% endif %}
+          </li>
         </ul>
       </div>
     </nav>
   </div>
 
+  <!-- sidebar -->
   <ul class="sidenav grey darken-4" id="mobile-links">
       <li><a href="" class="teal-text text-accent-2">Contact :)</a></li>
       <li><a href="" class="teal-text text-accent-2">About Me</a></li>
-      <li><a href="" class="btn teal lighten-2 grey-text text-darken-4">Login <3 </a></li>
+      <li>
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}?next={{ request.path }}" class="teal-text text-accent-2">
+              Wanna Log out
+              <span class="amber-text text-lighten-1">{{user.username}}</span>? :(
+          </a>
+          {% else %}
+          <a href="{% url 'login' %}?next={{ request.path }}"
+             class="btn teal lighten-2 grey-text text-darken-4">Login :) </a>
+          {% endif %}
+      </li>
+
   </ul>
-<h1> Freshest Articles! </h1>
 
-<ul>
+    <!-- article cards -->
+    <div class="container">
+    <div class="row">
+        <div class="col s12 l12">
+            <h2 class="teal-text text-accent-2 center-align">Blog Posts</h2>
+            <h6 class="teal-text text-darken-2 center-align">I would be really happy if you read these :)</h6>
+        </div>
 
-    {% for article in articles %}
-        <li>
-            <a href="{% url 'blog_app:article_detail' article.id %}">{{ article.title }}</a>
-            by
-            {% for author in article.authors.all %}
+     {% for article in articles %}
+      <div class="col s12 l4">
+        <div class="card grey darken-4">
+          <div class="card-content">
+            <span class="card-title amber-text text-lighten-1">{{ article.title }}</span>
+            <p class="multi-line-truncate white-text">{{article.body}}</p>
+            <span class="grey-text">by {% for author in article.authors.all %}
                 {{ author.user.username }}{% if not forloop.last %}, {% endif %}
-            {% endfor %}
-            , Published on {{ article.created_at }}
-        {% if article.updated_at != article.created_at %}
-          (updated on {{ article.updated_at }})</li>
-        {% endif %}
-    {% empty %}
+                {% endfor %}
+            </span>
+          </div>
+          <div class="card-action">
+            <a href="{% url 'blog_app:article_detail' article.id %}" class="teal-text text-accent-2">Read The Blogpost</a>
+          </div>
+        </div>
+      </div>
+
+        {% empty %}
         <p>
             No articles available.
         </p>
-    {% endfor %}
-</ul>
-<p>{% include "blog_app/login_status.html" %}</p>
+       {% endfor %}
+    </div>
+    </div>
+
 
 
 {% if user_role == ADMIN_ROLE %}
 <a href="{% url 'blog_app:article_create' %}">Add an Article!</a>
 {%endif%}
 
+  <!-- jQuery for adding logic to elements -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
   <script>
@@ -90,4 +155,5 @@
   </script>
 
 </body>
+
 </html>
