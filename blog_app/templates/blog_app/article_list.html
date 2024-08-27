@@ -19,7 +19,16 @@
 <!-- custom CSS for overriding Materialize -->
 <style>
 
-    
+    body {
+      background-image: url("{% static 'blog_app/images/website_background.jpg' %}");
+      background-size: cover; /* Ensures the image covers the entire background */
+      background-repeat: no-repeat; /* Prevents the image from repeating */
+      background-attachment: scroll; /* Ensures the background scrolls with the content */
+      background-position: center; /* Centers the background image */
+      min-height: 100vh; /* Ensures the body covers the viewport height */
+      margin: 0; /* Removes default margin */
+    }
+
     .nav-wrapper .brand-logo img {
       max-height: 64px; /* Ensure the image height doesn't exceed the navbar */
       width: auto; /* Maintain aspect ratio */
