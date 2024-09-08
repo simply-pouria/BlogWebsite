@@ -64,22 +64,23 @@
       text-overflow: ellipsis;
     }
 
-        .text-overlay {
+    .text-overlay {
       position: relative;
-      z-index: 1; /* Keeps text above the overlay */
-      color: #fff; /* White text for better contrast */
+      z-index: 1;
+      color: #fff;
+      padding: 15px; /* Adjust the padding to create extra space */
     }
 
     .text-overlay::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent overlay */
-      z-index: -1; /* Keeps the overlay behind the text */
-      border-radius: 5px; /* Optional: Rounds corners for a softer look */
+      top: -10px; /* Adjust this value to control the border outside the padding */
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+      border-radius: 5px;
     }
 
 
@@ -170,9 +171,9 @@
   <div class="container">
       <div class="row">
           <div class="class l4 s12 ">
-              <h3 class="teal-text text-lighten">About<span class="amber-text text-lighten-1"> Me</span></h3>
+              <h3 class="teal-text text-accent-2">About<span class="amber-text text-lighten-1"> Me</span></h3>
               <div class="text-overlay">
-                  <strong class="teal-text text-lighten-1">
+                  <strong class="teal-text text-accent-2 center-align">
                     Hello! I am interested in computer science, mathematics, and programming. I love developing creative ideas with code and working on various projects that reflect these interests. Indeed, there is nothing quite like satisfaction if something you have been building opens its eyes.
 
                     Although I am currently an undergraduate student in Computer Science at the University of Isfahan, my self-motivation and curiosity drive me to learn continuously. I always get excited about entering a new frontier and learning new skills. Currently, as a student, I am focusing on learning and growing, but when it comes to your cool job offerings and internships that rhyme with my interests, I will most definitely consider working on them.
