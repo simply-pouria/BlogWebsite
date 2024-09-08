@@ -64,6 +64,25 @@
       text-overflow: ellipsis;
     }
 
+        .text-overlay {
+      position: relative;
+      z-index: 1; /* Keeps text above the overlay */
+      color: #fff; /* White text for better contrast */
+    }
+
+    .text-overlay::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent overlay */
+      z-index: -1; /* Keeps the overlay behind the text */
+      border-radius: 5px; /* Optional: Rounds corners for a softer look */
+    }
+
+
 
 </style>
 </head>
@@ -150,15 +169,17 @@
     <!-- about me -->
   <div class="container">
       <div class="row">
-          <div class="class l4 s12">
+          <div class="class l4 s12 ">
               <h3 class="teal-text text-lighten">About<span class="amber-text text-lighten-1"> Me</span></h3>
-              <strong class="teal-text text-lighten-1">
-Hello! I am interested in computer science, mathematics, and programming. I love developing creative ideas with code and working on various projects that reflect these interests. Indeed, there is nothing quite like satisfaction if something you have been building opens its eyes.
+              <div class="text-overlay">
+                  <strong class="teal-text text-lighten-1">
+                    Hello! I am interested in computer science, mathematics, and programming. I love developing creative ideas with code and working on various projects that reflect these interests. Indeed, there is nothing quite like satisfaction if something you have been building opens its eyes.
 
-Although I am currently an undergraduate student in Computer Science at the University of Isfahan, my self-motivation and curiosity drive me to learn continuously. I always get excited about entering a new frontier and learning new skills. Currently, as a student, I am focusing on learning and growing, but when it comes to your cool job offerings and internships that rhyme with my interests, I will most definitely consider working on them.
+                    Although I am currently an undergraduate student in Computer Science at the University of Isfahan, my self-motivation and curiosity drive me to learn continuously. I always get excited about entering a new frontier and learning new skills. Currently, as a student, I am focusing on learning and growing, but when it comes to your cool job offerings and internships that rhyme with my interests, I will most definitely consider working on them.
 
-Proficient in English, actively learning German, and Fluent in Persian, I enjoy connecting with people across the world and collaborating on innovative ideas. Thanks for stopping by my site—I look forward to connecting!
-              </strong>
+                    Proficient in English, actively learning German, and Fluent in Persian, I enjoy connecting with people across the world and collaborating on innovative ideas. Thanks for stopping by my site—I look forward to connecting!
+                  </strong>
+              </div>
           </div>
       </div>
   </div>
