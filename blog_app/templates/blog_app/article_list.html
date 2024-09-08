@@ -74,13 +74,13 @@
     .text-overlay::before {
       content: '';
       position: absolute;
-      top: -10px; /* Adjust this value to control the border outside the padding */
-      left: -10px;
-      right: -10px;
-      bottom: -10px;
-      background-color: rgba(0, 0, 0, 0.5);
+      top: -7px; /* Adjust this value to control the border outside the padding */
+      left: -7px;
+      right: -7px;
+      bottom: -7px;
+      background-color: rgba(0, 0, 0, 0.7);
       z-index: -1;
-      border-radius: 5px;
+      border-radius: 8px;
     }
 
 
@@ -149,7 +149,7 @@
         <div class="card grey darken-4">
           <div class="card-content">
             <span class="card-title amber-text text-lighten-1">{{ article.title }}</span>
-            <p class="multi-line-truncate white-text">{{article.body}}</p>
+            <p class="multi-line-truncate teal-text text-lighten-1">{{article.body}}</p>
             <span class="grey-text">by {% for author in article.authors.all %}
                 {{ author.user.username }}{% if not forloop.last %}, {% endif %}
                 {% endfor %}
@@ -173,12 +173,12 @@
           <div class="class l4 s12 ">
               <h3 class="teal-text text-accent-2">About<span class="amber-text text-lighten-1"> Me</span></h3>
               <div class="text-overlay">
-                  <strong class="teal-text text-accent-2 center-align">
+                  <strong class="teal-text text-lighten-2 left-align">
                     Hello! I am interested in computer science, mathematics, and programming. I love developing creative ideas with code and working on various projects that reflect these interests. Indeed, there is nothing quite like satisfaction if something you have been building opens its eyes.
 
                     Although I am currently an undergraduate student in Computer Science at the University of Isfahan, my self-motivation and curiosity drive me to learn continuously. I always get excited about entering a new frontier and learning new skills. Currently, as a student, I am focusing on learning and growing, but when it comes to your cool job offerings and internships that rhyme with my interests, I will most definitely consider working on them.
 
-                    Proficient in English, actively learning German, and Fluent in Persian, I enjoy connecting with people across the world and collaborating on innovative ideas. Thanks for stopping by my site—I look forward to connecting!
+                    Proficient in English, actively learning German, and Fluent in Persian, I enjoy connecting with people across the world and collaborating on innovative ideas. <span class="amber-text text-lighten-1">Thanks for stopping by my site—I look forward to connecting!</span>
                   </strong>
               </div>
           </div>
