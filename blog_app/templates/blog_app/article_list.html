@@ -88,9 +88,6 @@
     margin-top: 1em;
     }
 
-
-
-
 </style>
 </head>
 
@@ -106,8 +103,8 @@
           <i class="material-icons teal-text">menu</i>
         </a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="" class="teal-text text-accent-2">Contact ^^</a></li>
-          <li><a href="#about-me" class="teal-text text-accent-2">About Me <3</a></li>
+          <li><a href="#contact-me" class="teal-text text-accent-2">Contact</a></li>
+          <li><a href="#about-me" class="teal-text text-accent-2">About Me</a></li>
           <li>
               {% if user.is_authenticated %}
               <a href="{% url 'logout' %}?next={{ request.path }}" class="teal-text text-accent-2">
@@ -126,8 +123,8 @@
 
   <!-- sidebar -->
   <ul class="sidenav grey darken-4" id="mobile-links">
-      <li><a href="" class="teal-text text-accent-2">Contact :)</a></li>
-      <li><a href="" class="teal-text text-accent-2">About Me</a></li>
+      <li><a href="#contact-me" class="teal-text text-accent-2">Contact</a></li>
+      <li><a href="#about-me" class="teal-text text-accent-2">About Me</a></li>
       <li>
           {% if user.is_authenticated %}
           <a href="{% url 'logout' %}?next={{ request.path }}" class="teal-text text-accent-2">
@@ -198,14 +195,13 @@
   <!-- contact me -->
   <div class="container">
       <div class="row">
-          <div class="col l7 s12">
-              <h4 class="teal-text text-accent-2"> Let's <span class="amber-text text-lighten-1"> Build </span> Something Great <span class="amber-text text-lighten-1">Together! </span> </h4>
-              <h6 class="teal-text text-accent-2"> How about a virtual coffee? I'm always open to connecting and chatting about new ideas! </h6>
+          <div class="col l8 s12" style="margin-top: 5em;">
+              <h4 class="teal-text text-accent-2 align-right"> Let's <span class="amber-text text-lighten-1"> Build </span> Something Great <span class="amber-text text-lighten-1">Together</span>! </h4>
           </div>
 
-          <div class="col push-l1 l3 s12">
+          <div class="col l3 s12">
               <div class="text-overlay">
-                  <h5 class="teal-text text-accent-2" id="contact-me scrollspy">Contact <span class="amber-text text-lighten-1">Me</span>!</h5>
+                  <h5 class="teal-text text-accent-2 scrollspy" id="contact-me">Contact <span class="amber-text text-lighten-1">Me</span>!</h5>
                       <ul>
                           <li class="vertical-adjust-icon">
                               <a class="teal-text text-accent-2" href=""><i class="fa-regular fa-envelope fa-xl" style="color: #ffca28;"></i> Mail</a>
