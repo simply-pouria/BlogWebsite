@@ -11,23 +11,23 @@
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
-    <title>Pouria's Blog</title>
+  <title>Pouria's Blog</title>
 
-<!-- custom CSS for overriding Materialize -->
-<link rel="stylesheet" href="{% static 'blog_app/css/article-list.css' %}">
-    <link rel="stylesheet" href="{% static 'blog_app/css/layout.css' %}">
+    <!-- custom CSS for overriding Materialize -->
+   <link rel="stylesheet" href="{% static 'blog_app/css/article-list.css' %}">
+   <link rel="stylesheet" href="{% static 'blog_app/css/layout.css' %}">
 
-<style>
-      body {
-      background-image: url("{% static 'blog_app/images/website_background.jpg' %}");
-      background-size: cover; /* Ensures the image covers the entire background */
-      background-repeat: no-repeat; /* Prevents the image from repeating */
-      background-attachment: fixed; /* Fixes the background, so it doesn't scroll */
-      background-position: center; /* Centers the background image */
-      min-height: 100vh; /* Ensures the body covers the viewport height */
-      margin: 0; /* Removes default margin */
-    }
-</style>
+    <style>
+          body {
+          background-image: url("{% static 'blog_app/images/website_background.jpg' %}");
+          background-size: cover; /* Ensures the image covers the entire background */
+          background-repeat: no-repeat; /* Prevents the image from repeating */
+          background-attachment: fixed; /* Fixes the background, so it doesn't scroll */
+          background-position: center; /* Centers the background image */
+          min-height: 100vh; /* Ensures the body covers the viewport height */
+          margin: 0; /* Removes default margin */
+        }
+    </style>
 </head>
 
 <!-- navbar -->
@@ -80,15 +80,26 @@
       <li><a href="#about-me" class="teal-text text-accent-2">About Me</a></li>
       <li>
           {% if user.is_authenticated %}
-          <a href="{% url 'logout' %}?next={{ request.path }}" class="teal-text text-accent-2">
-              Wanna Log out
-              <span class="amber-text text-lighten-1">{{user.username}}</span>? :(
-          </a>
-          {% else %}
-          <a href="{% url 'login' %}?next={{ request.path }}"
-             class="btn teal lighten-2 grey-text text-darken-4">
-              Login :)
-          </a>
+            <li class="teal-text">
+              <div class="container">
+              Logged in as
+              <span class="amber-text text-darken-2"> {{user.username}}
+                <a href="{% url 'logout' %}?next={{ request.path }}" class="teal-text text-accent-2 tooltipped" data-position="bottom" data-tooltip="Log Out">
+                    <i class="fa-solid fa-right-from-bracket fa-xl teal-text" ></i>
+                </a>
+              </span>
+                  </div>  
+
+            </li>
+
+              {% else %}
+            <li>
+              <a href="{% url 'login' %}?next={{ request.path }}"
+                 class="btn teal lighten-2 grey-text text-darken-4">
+                  <i class="fa-solid fa-right-to-bracket fa-xl amber-text text-accent-2" ></i>
+                  Login
+              </a>
+            </li>
           {% endif %}
       </li>
 
@@ -193,7 +204,7 @@
 {%endif%}
 
   <!-- jQuery for adding logic to elements -->
-   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
   <script src="{% static 'blog_app/js/article-list.js' %}"></script>
 
