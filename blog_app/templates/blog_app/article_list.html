@@ -2,6 +2,8 @@
 <html lang="en">
 {% load static %}
 <head>
+
+    <title>Pouria's Blog</title>
 <!-- importing Materialize, Font Awsome -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +12,6 @@
     <script src="https://kit.fontawesome.com/032ea820f5.js" crossorigin="anonymous"></script>
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-
-  <title>Pouria's Blog</title>
 
     <!-- custom CSS for overriding Materialize -->
    <link rel="stylesheet" href="{% static 'blog_app/css/article-list.css' %}">
@@ -38,23 +38,23 @@
         <a href="#" class="brand-logo">
             <img src="{% static 'blog_app/images/name.png' %}" alt="" class="responsive-img">
         </a>
-        <a href="#" class="sidenav-trigger" data-target="mobile-links">
+        <a href="#" class="sidenav-trigger waves-effect waves-light" data-target="mobile-links">
           <i class="fa-solid fa-bars fa-xl teal-text" ></i>
         </a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="#contact-me" class="teal-text text-accent-2">Contact</a></li>
-          <li><a href="#about-me" class="teal-text text-accent-2">About Me</a></li>
+          <li><a href="#contact-me " class="teal-text text-accent-2 waves-effect waves-light">Contact</a></li>
+          <li><a href="#about-me" class="teal-text text-accent-2 waves-effect waves-light">About Me</a></li>
 
 
               {% if user.is_authenticated %}
-            <li class="teal-text">
+            <li class="teal-text ">
 
                   Logged in as
                   <span class="amber-text text-darken-2">{{user.username}}</span>
             </li>
 
             <li>
-                  <a href="{% url 'logout' %}?next={{ request.path }}" class="teal-text text-accent-2 tooltipped" data-position="bottom" data-tooltip="Log Out">
+                  <a href="{% url 'logout' %}?next={{ request.path }}" class="teal-text text-accent-2 tooltipped waves-effect waves-light" data-position="bottom" data-tooltip="Log Out">
                       <i class="fa-solid fa-right-from-bracket fa-xl teal-text" ></i>
                   </a>
             </li>
@@ -62,7 +62,7 @@
               {% else %}
             <li>
               <a href="{% url 'login' %}?next={{ request.path }}"
-                 class="btn teal lighten-2 grey-text text-darken-4">
+                 class="btn teal lighten-2 grey-text text-darken-4 waves-effect waves-light">
                   <i class="fa-solid fa-right-to-bracket fa-xl amber-text text-accent-2" ></i>
                   Login
               </a>
@@ -76,26 +76,26 @@
 
   <!-- sidebar -->
   <ul class="sidenav grey darken-4" id="mobile-links">
-      <li><a href="#contact-me" class="teal-text text-accent-2">Contact</a></li>
-      <li><a href="#about-me" class="teal-text text-accent-2">About Me</a></li>
+      <li><a href="#contact-me" class="teal-text text-accent-2 waves-effect waves-light">Contact</a></li>
+      <li><a href="#about-me" class="teal-text text-accent-2 waves-effect waves-light">About Me</a></li>
       <li>
           {% if user.is_authenticated %}
             <li class="teal-text">
               <div class="container">
               Logged in as
               <span class="amber-text text-darken-2"> {{user.username}}
-                <a href="{% url 'logout' %}?next={{ request.path }}" class="teal-text text-accent-2 tooltipped" data-position="bottom" data-tooltip="Log Out">
+                <a href="{% url 'logout' %}?next={{ request.path }}" class="teal-text text-accent-2 tooltipped waves-effect waves-light" data-position="bottom" data-tooltip="Log Out">
                     <i class="fa-solid fa-right-from-bracket fa-xl teal-text" ></i>
                 </a>
               </span>
-                  </div>  
+                  </div>
 
             </li>
 
               {% else %}
             <li>
               <a href="{% url 'login' %}?next={{ request.path }}"
-                 class="btn teal lighten-2 grey-text text-darken-4">
+                 class="btn teal lighten-2 grey-text text-darken-4 waves-effect waves-light">
                   <i class="fa-solid fa-right-to-bracket fa-xl amber-text text-accent-2" ></i>
                   Login
               </a>
@@ -125,7 +125,7 @@
             </span>
           </div>
           <div class="card-action">
-            <a href="{% url 'blog_app:article_detail' article.id %}" class="teal-text text-accent-2"><strong class="amber-text text-lighten-1"> Read</strong> The Blogpost</a>
+            <a href="{% url 'blog_app:article_detail' article.id %}" class="teal-text text-accent-2 waves-effect waves-light"><strong class="amber-text text-lighten-1"> Read</strong> The Blogpost</a>
           </div>
         </div>
       </div>
@@ -170,23 +170,23 @@
                   <h5 class="teal-text text-accent-2 scrollspy" id="contact-me">Contact <span class="amber-text text-lighten-1">Me</span>!</h5>
                       <ul>
                           <li class="vertical-adjust-icon">
-                              <a class="teal-text text-accent-2 tooltipped " data-position="left" data-tooltip="pouriapmd83@gmail.com" href="mailto:https://pouriapmd83@gmail.com"><i class="fa-regular fa-envelope fa-xl amber-text text-lighten-1" ></i> Mail</a>
+                              <a class="teal-text text-accent-2 tooltipped waves-effect waves-light" data-position="left" data-tooltip="pouriapmd83@gmail.com" href="mailto:https://pouriapmd83@gmail.com"><i class="fa-regular fa-envelope fa-xl amber-text text-lighten-1" ></i> Mail</a>
                           </li>
 
                           <li class="vertical-adjust-icon">
-                              <a class="teal-text text-accent-2 tooltipped"  data-position="left" data-tooltip="@Wunschsohn" href="https://t.me/Wunschsohn"><i class="fa-brands fa-telegram fa-xl amber-text text-lighten-1"></i> Telegram</a>
+                              <a class="teal-text text-accent-2 tooltipped waves-effect waves-light"  data-position="left" data-tooltip="@Wunschsohn" href="https://t.me/Wunschsohn"><i class="fa-brands fa-telegram fa-xl amber-text text-lighten-1"></i> Telegram</a>
                           </li>
 
                           <li class="vertical-adjust-icon">
-                              <a class="teal-text text-accent-2 tooltipped"  data-position="left" data-tooltip="@simply-pouria" href="https://github.com/simply-pouria"><i class="fa-brands fa-github fa-xl amber-text text-lighten-1"></i> GitHub</a>
+                              <a class="teal-text text-accent-2 tooltipped waves-effect waves-light"  data-position="left" data-tooltip="@simply-pouria" href="https://github.com/simply-pouria"><i class="fa-brands fa-github fa-xl amber-text text-lighten-1"></i> GitHub</a>
                           </li>
 
                           <li class="vertical-adjust-icon">
-                              <a class="teal-text text-accent-2 tooltipped"  data-position="left" data-tooltip="@PouriaMoradpour" href="https://x.com/PouriaMoradpour"><i class="fa-brands fa-x-twitter fa-xl amber-text text-lighten-1"></i> X</a>
+                              <a class="teal-text text-accent-2 tooltipped waves-effect waves-light"  data-position="left" data-tooltip="@PouriaMoradpour" href="https://x.com/PouriaMoradpour"><i class="fa-brands fa-x-twitter fa-xl amber-text text-lighten-1"></i> X</a>
                           </li>
 
                           <li class="vertical-adjust-icon">
-                              <a class="teal-text text-accent-2 tooltipped" data-position="left" data-tooltip="Pouria Moradpour" href="https://www.linkedin.com/in/pouria-moradpour-005b31284/"><i class="fa-brands fa-linkedin fa-xl amber-text text-lighten-1"></i> LinkedIn</a>
+                              <a class="teal-text text-accent-2 tooltipped waves-effect waves-light" data-position="left" data-tooltip="Pouria Moradpour" href="https://www.linkedin.com/in/pouria-moradpour-005b31284/"><i class="fa-brands fa-linkedin fa-xl amber-text text-lighten-1"></i> LinkedIn</a>
                           </li>
 
 
