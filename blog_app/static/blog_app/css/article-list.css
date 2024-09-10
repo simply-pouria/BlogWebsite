@@ -1,0 +1,17 @@
+
+/* Custom multi-line truncation (Materialize has only one-line) */
+.multi-line-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Number of lines to show before truncating */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vertical-adjust-img {
+margin-top: 7em;
+}
+
+.vertical-adjust-icon {
+margin-top: 1em;
+}

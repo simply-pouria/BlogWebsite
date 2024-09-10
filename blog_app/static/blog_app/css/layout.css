@@ -1,0 +1,47 @@
+
+/* Navbar Custom Styling */
+
+.nav-wrapper .brand-logo img {
+  max-height: 64px; /* Ensure the image height doesn't exceed the navbar */
+  width: auto; /* Maintain aspect ratio */
+  vertical-align: middle; /* Center the image vertically */
+}
+
+/* Center the brand logo vertically within the navbar */
+.nav-wrapper .brand-logo {
+  display: flex;
+  align-items: center;
+}
+
+.nav-wrapper .brand-logo img {
+  max-height: 64px; /* Ensure the image height doesn't exceed the navbar */
+  width: auto; /* Maintain aspect ratio */
+  vertical-align: middle; /* Center the image vertically */
+}
+
+/* Center the brand logo vertically within the navbar */
+.nav-wrapper .brand-logo {
+  display: flex;
+  align-items: center;
+}
+
+/* semi-transparent overlay to provide contrast */
+
+.text-overlay {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  padding: 1em; /* to create extra space */
+}
+
+.text-overlay::before {
+  content: '';
+  position: absolute;
+  top: -0.3em;
+  left: -0.3em;
+  right: -0.3em;
+  bottom: -0.3em;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+  border-radius: 8px;
+}

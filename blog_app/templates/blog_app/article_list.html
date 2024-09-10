@@ -14,9 +14,11 @@
     <title>Pouria's Blog</title>
 
 <!-- custom CSS for overriding Materialize -->
-<style>
+<link rel="stylesheet" href="{% static 'blog_app/css/article-list.css' %}">
+    <link rel="stylesheet" href="{% static 'blog_app/css/layout.css' %}">
 
-    body {
+<style>
+      body {
       background-image: url("{% static 'blog_app/images/website_background.jpg' %}");
       background-size: cover; /* Ensures the image covers the entire background */
       background-repeat: no-repeat; /* Prevents the image from repeating */
@@ -25,69 +27,6 @@
       min-height: 100vh; /* Ensures the body covers the viewport height */
       margin: 0; /* Removes default margin */
     }
-
-
-    .nav-wrapper .brand-logo img {
-      max-height: 64px; /* Ensure the image height doesn't exceed the navbar */
-      width: auto; /* Maintain aspect ratio */
-      vertical-align: middle; /* Center the image vertically */
-    }
-
-    /* Center the brand logo vertically within the navbar */
-    .nav-wrapper .brand-logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-wrapper .brand-logo img {
-      max-height: 64px; /* Ensure the image height doesn't exceed the navbar */
-      width: auto; /* Maintain aspect ratio */
-      vertical-align: middle; /* Center the image vertically */
-    }
-
-    /* Center the brand logo vertically within the navbar */
-    .nav-wrapper .brand-logo {
-      display: flex;
-      align-items: center;
-    }
-
-
-    /* Custom multi-line truncation (Materialize has only one-line) */
-    .multi-line-truncate {
-      display: -webkit-box;
-      -webkit-line-clamp: 5; /* Number of lines to show before truncating */
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .text-overlay {
-      position: relative;
-      z-index: 1;
-      color: #fff;
-      padding: 1em; /* to create extra space */
-    }
-
-    .text-overlay::before {
-      content: '';
-      position: absolute;
-      top: -0.3em;
-      left: -0.3em;
-      right: -0.3em;
-      bottom: -0.3em;
-      background-color: rgba(0, 0, 0, 0.7);
-      z-index: -1;
-      border-radius: 8px;
-    }
-
-    .vertical-adjust-img {
-    margin-top: 7em;
-    }
-
-    .vertical-adjust-icon {
-    margin-top: 1em;
-    }
-
 </style>
 </head>
 
@@ -246,13 +185,6 @@
 
           </div>
       </div>
-
-
-
-
-
-
-
 
 
 
