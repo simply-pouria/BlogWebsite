@@ -105,17 +105,31 @@
         <ul class="right hide-on-med-and-down">
           <li><a href="#contact-me" class="teal-text text-accent-2">Contact</a></li>
           <li><a href="#about-me" class="teal-text text-accent-2">About Me</a></li>
-          <li>
+
+
               {% if user.is_authenticated %}
-              <a href="{% url 'logout' %}?next={{ request.path }}" class="teal-text text-accent-2">
-                  Wanna Log out
-                  <span class="amber-text text-lighten-1">{{user.username}}</span>? :(
-              </a>
+            <li class="teal-text">
+
+                  Logged in as
+                  <span class="amber-text text-darken-2">{{user.username}}</span>
+            </li>
+
+            <li>
+                  <a href="{% url 'logout' %}?next={{ request.path }}" class="teal-text text-accent-2 tooltipped" data-position="bottom" data-tooltip="Log Out">
+                      <i class="fa-solid fa-right-from-bracket fa-xl teal-text" ></i>
+                  </a>
+            </li>
+
               {% else %}
+            <li>
               <a href="{% url 'login' %}?next={{ request.path }}"
-                 class="btn teal lighten-2 grey-text text-darken-4">Login :) </a>
+                 class="btn teal lighten-2 grey-text text-darken-4">
+                  <i class="fa-solid fa-right-to-bracket fa-xl amber-text text-accent-2" ></i>
+                  Login
+              </a>
+            </li>
               {% endif %}
-          </li>
+
         </ul>
       </div>
     </nav>
@@ -133,7 +147,9 @@
           </a>
           {% else %}
           <a href="{% url 'login' %}?next={{ request.path }}"
-             class="btn teal lighten-2 grey-text text-darken-4">Login :) </a>
+             class="btn teal lighten-2 grey-text text-darken-4">
+              Login :)
+          </a>
           {% endif %}
       </li>
 
@@ -251,6 +267,7 @@
     $(document).ready(function(){
       $('.sidenav').sidenav();
       $('.scrollspy').scrollSpy();
+      $('.tooltipped').tooltip();
     });
   </script>
 
