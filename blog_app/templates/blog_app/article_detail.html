@@ -14,6 +14,7 @@
 
     <!-- custom CSS for overriding Materialize -->
    <link rel="stylesheet" href="{% static 'blog_app/css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'blog_app/css/article-detail.css' %}">
 
     <style>
         body {
@@ -34,7 +35,7 @@
   <div class="navbar-fixed">
     <nav class="nav-wrapper grey darken-4">
       <div class="container">
-        <a href="#" class="brand-logo">
+        <a href="{% url 'blog_app:article_list' %}" class="brand-logo">
             <img src="{% static 'blog_app/images/name.png' %}" alt="" class="responsive-img">
         </a>
         <a href="#" class="sidenav-trigger waves-effect waves-light" data-target="mobile-links">
@@ -100,7 +101,7 @@
               </a>
             </li>
           {% endif %}
-      </li>
+
 
   </ul>
 
@@ -110,7 +111,7 @@
         {{ article.title }}
     </h2>
 
-    <h5 class="teal-text text-accent-4">
+    <h6 class="teal-text text-accent-4">
         by
         {% for author in article.authors.all %}
             <span class="amber-text text-darken-2">{{ author.user.username }}</span>{% if not forloop.last %}, {% endif %}
@@ -118,13 +119,17 @@
         {% if article.updated_at != article.created_at %}
           (updated on <span class="teal-text text-accent-3">{{ article.updated_at }}</span>)
         {% endif %}
-    </h5>
+    </h6>
 
-    <p class="text-overlay teal-text">
+     <div class="fixed-action-btn">
+        <a href="{% url 'blog_app:article_list' %}" class="btn-floating btn-large">
+            <i class="fa-solid fa-house amber darken-3 teal-text text-darken-2"></i>
+        </a>
+     </div>
+
+    <p class="text-overlay teal-text better-p flow-text">
         {{ article.body }}
     </p>
-
-    <a href="{% url 'blog_app:article_list' %}">go back to article list</a>
 
 </div>
 
