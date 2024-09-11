@@ -1,0 +1,19 @@
+footer {
+    background-color: #302c2c;
+    color: #999999;
+    padding: 0.5em 0;
+    text-align: center;
+    margin-top: auto;
+    line-height: 1.2;
+    font-size: 0.8em;
+    border-radius: 15px 15px 0 0; /* Rounded corners on the top */
+}
+
+footer a {
+    color: #666666;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #cccccc;
+}

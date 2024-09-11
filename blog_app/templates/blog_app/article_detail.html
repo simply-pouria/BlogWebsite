@@ -22,6 +22,8 @@
         color: #ffffff;
         margin: 0;
         padding: 0;
+        display: flex;
+        flex-direction: column;
         }
     </style>
 
@@ -31,7 +33,7 @@
 <body>
 
     <!-- navbar -->
-<body>
+
   <div class="navbar-fixed">
     <nav class="nav-wrapper grey darken-4">
       <div class="container">
@@ -111,10 +113,10 @@
         {{ article.title }}
     </h2>
 
-    <h6 class="teal-text text-darken-2">
+    <h6 class="teal-text text-darken-2" style="font-size: 0.9em">
         by
         {% for author in article.authors.all %}
-            <span class="teal-text text-accent-4">{{ author.user.username }}</span>{% if not forloop.last %} {% endif %}
+            <span class="amber-text text-accent-3">{{ author.user.username }}</span>{% if not forloop.last %} {% endif %}
         {% endfor %} - Published on <span class="teal-text text-accent-4">{{ article.created_at }}</span>
         {% if article.updated_at != article.created_at %}
           (updated on <span class="teal-text text-accent-4">{{ article.updated_at }}</span>)
@@ -141,12 +143,12 @@
 
 {%endif%}
 
+{% include 'blog_app/footer.html' %}
+
   <!-- jQuery for adding logic to elements -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
   <script src="{% static 'blog_app/js/base.js' %}"></script>
-
-
 
 </body>
 </html>
