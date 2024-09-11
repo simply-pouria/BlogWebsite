@@ -18,7 +18,7 @@
 
     <style>
         body {
-        background-color: #302c2c;
+        background-color: #424242;
         color: #ffffff;
         margin: 0;
         padding: 0;
@@ -111,13 +111,13 @@
         {{ article.title }}
     </h2>
 
-    <h6 class="teal-text text-accent-4">
+    <h6 class="teal-text text-darken-2">
         by
         {% for author in article.authors.all %}
-            <span class="amber-text text-darken-2">{{ author.user.username }}</span>{% if not forloop.last %}, {% endif %}
-        {% endfor %}, Published on <span class="teal-text text-accent-3">{{ article.created_at }}</span>
+            <span class="teal-text text-accent-4">{{ author.user.username }}</span>{% if not forloop.last %} {% endif %}
+        {% endfor %} - Published on <span class="teal-text text-accent-4">{{ article.created_at }}</span>
         {% if article.updated_at != article.created_at %}
-          (updated on <span class="teal-text text-accent-3">{{ article.updated_at }}</span>)
+          (updated on <span class="teal-text text-accent-4">{{ article.updated_at }}</span>)
         {% endif %}
     </h6>
 
@@ -127,7 +127,7 @@
         </a>
      </div>
 
-    <p class="text-overlay teal-text better-p flow-text">
+    <p class="better-p flow-text overlay vertical-adjust-body">
         {{ article.body }}
     </p>
 

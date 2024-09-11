@@ -2,3 +2,26 @@
     font-size: 1.2em;
     line-height: 1.6;
           }
+
+.overlay {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  padding: 1em; /* to create extra space */
+}
+
+.overlay::before {
+  content: '';
+  position: absolute;
+  top: -0.3em;
+  left: -0.3em;
+  right: -0.3em;
+  bottom: -0.3em;
+  background-color: #302c2c;
+  z-index: -1;
+  border-radius: 8px;
+}
+
+.vertical-adjust-body {
+margin-top: 3em;
+}
