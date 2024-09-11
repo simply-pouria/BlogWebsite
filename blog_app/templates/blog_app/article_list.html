@@ -16,20 +16,8 @@
     <!-- custom CSS for overriding Materialize -->
    <link rel="stylesheet" href="{% static 'blog_app/css/article-list.css' %}">
    <link rel="stylesheet" href="{% static 'blog_app/css/layout.css' %}">
+   <link rel="stylesheet" href="{% static 'blog_app/css/background.css' %}">
 
-    <style>
-          body {
-          background-image: url("{% static 'blog_app/images/website_background.jpg' %}");
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-attachment: fixed;
-          background-position: center;
-          min-height: 100vh;
-          margin: 0;
-          display: flex;
-          flex-direction: column;/* Removes default margin */
-        }
-    </style>
 </head>
 
 <!-- navbar -->
@@ -116,7 +104,7 @@
 
      {% for article in articles %}
       <div class="col s12 l4">
-        <div class="card grey darken-4">
+        <div class="card grey darken-4" style="border-radius: 15px;">
           <div class="card-content">
             <span class="card-title amber-text text-lighten-1">{{ article.title }}</span>
             <p class="multi-line-truncate teal-text text-lighten-1">{{article.body}}</p>
@@ -125,7 +113,7 @@
                 {% endfor %}
             </span>
           </div>
-          <div class="card-action">
+          <div class="card-action" style="border-radius: 0 0 15px 15px;">
             <a href="{% url 'blog_app:article_detail' article.id %}" class="teal-text text-accent-2 waves-effect waves-light"><strong class="amber-text text-lighten-1"> Read</strong> The Blogpost</a>
           </div>
         </div>

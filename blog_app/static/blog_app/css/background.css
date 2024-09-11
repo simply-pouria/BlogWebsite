@@ -1,0 +1,11 @@
+      body {
+      background-image: url("../images/website_background.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;/* Removes default margin */
+    }
