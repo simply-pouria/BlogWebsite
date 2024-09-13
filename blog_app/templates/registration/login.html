@@ -57,12 +57,12 @@
         <div class="input-field">
             {{ form.username }}
             <label for="username">Username</label>
-            {{ form.username.errors }}
+            <div class="teal-text text-lighten-2">{{ form.username.errors }}</div>
         </div>
         <div class="input-field">
             {{ form.password }}
             <label for="password">Password</label>
-            {{ form.password.errors }}
+            <div class="teal-text text-lighten-2">{{ form.password.errors }}</div>
         </div>
         <button type="submit" class="btn teal lighten-2 grey-text text-darken-4 waves-effect waves-light">
                   <i class="fa-solid fa-right-to-bracket fa-xl amber-text text-lighten-2" ></i>

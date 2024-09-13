@@ -1,16 +1,98 @@
 <html lang="en">
+{% load static %}
 <head>
-<title>>Sign Up</title>
+    <title>Login</title>
+
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/032ea820f5.js" crossorigin="anonymous"></script>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+    <!-- custom CSS for overriding Materialize -->
+   <link rel="stylesheet" href="{% static 'blog_app/css/layout.css' %}">
+   <link rel="stylesheet" href="{% static 'blog_app/css/background.css' %}">
+   <link rel="stylesheet" href="{% static 'blog_app/css/form.css' %}">
 </head>
 
 <body>
 
-  <h2>Sign Up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign Up</button>
-  </form>
+
+    <!-- navbar -->
+
+  <div class="navbar-fixed">
+    <nav class="nav-wrapper grey darken-4">
+      <div class="container">
+        <a href="{% url 'blog_app:article_list' %}" class="brand-logo">
+            <img src="{% static 'blog_app/images/name.png' %}" alt="" class="responsive-img">
+        </a>
+        <a href="#" class="sidenav-trigger waves-effect waves-light" data-target="mobile-links">
+          <i class="fa-solid fa-bars fa-xl teal-text" ></i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="{% url 'blog_app:article_list' %}#contact-me " class="teal-text text-accent-2 waves-effect waves-light">Contact</a></li>
+          <li><a href="{% url 'blog_app:article_list' %}#about-me" class="teal-text text-accent-2 waves-effect waves-light">About Me</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <!-- sidebar -->
+  <ul class="sidenav grey darken-4" id="mobile-links">
+      <li><a href="{% url 'blog_app:article_list' %}#contact-me" class="teal-text text-accent-2 waves-effect waves-light">Contact</a></li>
+      <li><a href="{% url 'blog_app:article_list' %}#about-me" class="teal-text text-accent-2 waves-effect waves-light">About Me</a></li>
+
+
+
+  </ul>
+
+ <div class="container text-overlay adjust-form">
+    <h3 class="teal-text text-accent-2 center-align" style="margin-bottom: 1em">
+        Sign <span class="amber-text text-lighten-2">Up</span>
+    </h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="input-field">
+            {{ form.username }}
+            <label for="username">Username</label>
+            <div class="teal-text text-lighten-2">{{ form.username.errors }}</div>
+        </div>
+        <div class="input-field">
+            {{ form.password1 }}
+            <label for="password">Password</label>
+            <div class="teal-text text-lighten-2">{{ form.password1.errors }}</div>
+        </div>
+
+        <div class="input-field">
+            {{ form.password2 }}
+            <label for="password">Confirm Password</label>
+          <div class="teal-text text-lighten-2">{{ form.password2.errors }}</div>
+        </div>
+
+        <button type="submit" class="btn teal lighten-2 grey-text text-darken-4 waves-effect waves-light">
+                  <i class="fa-solid fa-user-plus fa-xl amber-text text-lighten-2" ></i>
+        </button>
+        <input type="hidden" name="next" value="{{ next }}">
+
+        <div style="margin-top: 1em">
+            <a href="{% url 'login' %}?next={{ request.path }}" class="teal-text text-accent">already have an account?</a>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+{% include 'blog_app/footer.html' %}
+
+  <!-- jQuery for adding logic to elements -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script src="{% static 'blog_app/js/base.js' %}"></script>
 
 </body>
+
 </html>
