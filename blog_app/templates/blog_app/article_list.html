@@ -58,11 +58,11 @@
               </a>
             </li>
 
-                        <li>
-              <a href="{% url 'login' %}?next={{ request.path }}"
-                 class="btn teal lighten-2 grey-text text-darken-4 waves-effect waves-light">
-                  <i class="fa-solid fa-right-to-bracket fa-xl amber-text text-accent-2" ></i>
-                  Login
+             <li>
+              <a href="{% url 'blog_app:signup' %}?next={{ request.path }}"
+                 class=" teal-text waves-effect waves-light">
+                  <i class="fa-solid fa-user-plus fa-xl amber-text text-accent-2" ></i>
+                  Sign Up
               </a>
             </li>
               {% endif %}
@@ -96,6 +96,14 @@
                  class="btn teal lighten-2 grey-text text-darken-4 waves-effect waves-light">
                   <i class="fa-solid fa-right-to-bracket fa-xl amber-text text-accent-2" ></i>
                   Login
+              </a>
+            </li>
+
+            <li>
+              <a href="{% url 'blog_app:signup' %}?next={{ request.path }}"
+                 class=" teal-text waves-effect waves-light">
+                  <i class="fa-solid fa-user-plus fa-xl amber-text text-accent-2" ></i>
+                  Sign Up
               </a>
             </li>
           {% endif %}
