@@ -1,5 +1,16 @@
-.adjust-form {
-    margin-top: 20vh;
-
-
+html, body {
+    height: 100%;
+    margin: 0;
 }
+
+.adjust-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    margin: auto;
+}
+
+input {
+    color: white !important;
+}
+
