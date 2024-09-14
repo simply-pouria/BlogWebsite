@@ -123,7 +123,7 @@
         <div class="card grey darken-4" style="border-radius: 15px;">
           <div class="card-content">
             <span class="card-title amber-text text-lighten-1">{{ article.title }}</span>
-            <p class="multi-line-truncate teal-text text-lighten-1">{{article.body}}</p>
+            <p class="multi-line-truncate teal-text text-lighten-1">{{ article.formatted_markdown|safe }}</p>
             <span class="grey-text">by {% for author in article.authors.all %}
                 {{ author.user.username }}{% if not forloop.last %}, {% endif %}
                 {% endfor %}
