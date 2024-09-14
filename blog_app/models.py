@@ -15,7 +15,7 @@ class UserProfile(models.Model):
         (ADMIN, 'Admin'),
     ]
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    # a user is able to have not authored an article
+    # a user is able to have not authored an article have
     authored = models.ManyToManyField('Article', through='AuthoredThrough', blank=True)
     role = models.IntegerField(default=USER, choices=ROLE_CHOICES)
 
