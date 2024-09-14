@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdownify
 
 
 class UserProfile(models.Model):
@@ -28,11 +30,14 @@ class Article(models.Model):
             max_length=200,
             validators=[MinLengthValidator(4, "Title must be greater than 4 characters")],
     )
-    body = models.TextField(null=True)
+    body = MarkdownxField(null=True)
     authors = models.ManyToManyField('UserProfile', through='AuthoredThrough', blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    # Convert the body to HTML when rendering
+    def formatted_markdown(self):
+        return markdownify(self.body)
     def __str__(self):
         return self.title
 
