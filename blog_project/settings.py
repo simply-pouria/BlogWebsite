@@ -28,7 +28,9 @@ SECRET_KEY = 'django-insecure-j7-_%4uifni0vrn01r9k8w%g)l-te!g5u#o8uf$0igy04gcux(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pouriamoradpour.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['pouriamoradpour.pythonanywhere.com',
+                 'localhost',
+                 '127.0.0.1']
 
 
 # Application definition
@@ -127,8 +129,12 @@ MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'blog_app', 'static'),  # This is where Django looks for additional static files
+    os.path.join(BASE_DIR, 'blog_app/static'),  # This is where Django looks for additional static files
 ]
+
+# the static file configuration on PythonAnywhere:
+#URL: /static/
+#Directory: /home/PouriaMoradpour/BlogWebsite/blog_project/blog_app/static/
 
 
 # Default primary key field type
