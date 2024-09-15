@@ -1,5 +1,3 @@
-I intend to use this as my personal/blog website when complete
-
-![Preview Image](https://github.com/simply-pouria/BlogWebsite/blob/main/prview.png)
-just a preview of the main page, I'm currently woring on it!
-
+### my personal/blog website 
+I have used Django, Materialize CSS, and Markdownx to build it
+you can see it [here](https://pouriamoradpour.pythonanywhere.com/)
