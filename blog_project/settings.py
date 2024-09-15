@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-j7-_%4uifni0vrn01r9k8w%g)l-te!g5u#o8uf$0igy04gcux(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['blogwebsite-production-0fee.up.railway.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['pouriamoradpour.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -52,6 +52,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 
 ROOT_URLCONF = 'blog_project.urls'
@@ -122,8 +125,9 @@ USE_TZ = True
 
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # This is where Django looks for additional static files
+    os.path.join(BASE_DIR, 'blog_app', 'static'),  # This is where Django looks for additional static files
 ]
 
 
