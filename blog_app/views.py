@@ -133,7 +133,7 @@ logger = logging.getLogger(__name__)
 @method_decorator(csrf_exempt, name='dispatch')
 class DeployWebhookView(View):
     def post(self, request, *args, **kwargs):
-        script_path = '/home/YOUR_PYTHONANYWHERE_USERNAME/YOUR_REPOSITORY/deploy.sh'
+        script_path = '/home/PouriaMoradpour/BlogWebsite/deploy.sh'
 
         if os.path.exists(script_path):
             logger.info(f'Script exists at {script_path}. Running the script.')
