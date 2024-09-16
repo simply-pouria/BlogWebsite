@@ -17,6 +17,7 @@ urlpatterns = [
     path('webhook/', DeployWebhookView.as_view(), name='deploy_webhook'),
 
 
+
 # not used in production, just to serve static files
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
