@@ -5,6 +5,11 @@ from .models import Article, UserProfile, AuthoredThrough
 from .utilities import RoleRequiredMixin
 from django.http import HttpResponseForbidden
 from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views import View
+from django.utils.decorators import method_decorator
+import subprocess
 
 class ArticleListView(ListView):
     model = Article
@@ -118,7 +123,16 @@ class ArticleDeleteView(RoleRequiredMixin, DeleteView):
     success_url = reverse_lazy('blog_app:article_list')
 
 
+@method_decorator(csrf_exempt, name='dispatch')
+class DeployWebhookView(View):
 
+    def post(self, request, *args, **kwargs):
+        # Run the deploy script
+        subprocess.run(['/home/YOUR_PYTHONANYWHERE_USERNAME/YOUR_REPOSITORY/deploy.sh'])
+        return HttpResponse('Deployment triggered')
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponse('Not allowed', status=405)
 
 
 
