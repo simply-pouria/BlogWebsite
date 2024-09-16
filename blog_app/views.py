@@ -127,9 +127,6 @@ class ArticleDeleteView(RoleRequiredMixin, DeleteView):
     success_url = reverse_lazy('blog_app:article_list')
 
 
-
-
-
 logger = logging.getLogger(__name__)
 
 @method_decorator(csrf_exempt, name='dispatch')
