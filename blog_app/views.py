@@ -1,15 +1,19 @@
+import os
+import logging
+import subprocess
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Article, UserProfile, AuthoredThrough
-from .utilities import RoleRequiredMixin
 from django.http import HttpResponseForbidden
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
 from django.utils.decorators import method_decorator
-import subprocess
+
+from .utilities import RoleRequiredMixin
 
 class ArticleListView(ListView):
     model = Article
@@ -123,16 +127,28 @@ class ArticleDeleteView(RoleRequiredMixin, DeleteView):
     success_url = reverse_lazy('blog_app:article_list')
 
 
+
+
+
+logger = logging.getLogger(__name__)
+
 @method_decorator(csrf_exempt, name='dispatch')
 class DeployWebhookView(View):
 
     def post(self, request, *args, **kwargs):
-        # Run the deploy script
-        subprocess.run(['/home/PouriaMoradpour/BlogWebsite/deploy.sh'])
+        script_path = '/home/YOUR_PYTHONANYWHERE_USERNAME/YOUR_REPOSITORY/deploy.sh'
+        if os.path.exists(script_path):
+            logger.info('Script exists. Running the deployment script.')
+            subprocess.run([script_path])
+        else:
+            logger.error(f'Script not found at {script_path}')
+            return HttpResponse('Script not found', status=404)
+
         return HttpResponse('Deployment triggered')
 
     def get(self, request, *args, **kwargs):
         return HttpResponse('Not allowed', status=405)
+
 
 
 
