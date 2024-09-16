@@ -128,7 +128,7 @@ class DeployWebhookView(View):
 
     def post(self, request, *args, **kwargs):
         # Run the deploy script
-        subprocess.run(['/home/YOUR_PYTHONANYWHERE_USERNAME/YOUR_REPOSITORY/deploy.sh'])
+        subprocess.run(['/home/PouriaMoradpour/BlogWebsite/deploy.sh'])
         return HttpResponse('Deployment triggered')
 
     def get(self, request, *args, **kwargs):
