@@ -15,8 +15,9 @@ urlpatterns = [
     path('signup/', ArticleSignUpView.as_view(), name='signup'),
     path('article/<int:pk>/delete/', ArticleDeleteView.as_view(), name='article_delete'),
     path('webhook/', DeployWebhookView.as_view(), name='deploy_webhook'),
-# not used in production, just to serve static files
     
+# not used in production, just to serve static files
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
