@@ -13,6 +13,6 @@ urlpatterns = [
     path('article/new/', ArticleCreateView.as_view(), name='article_create'),
     path('article/<int:pk>/edit/', ArticleUpdateView.as_view(), name='article_update'),
     path('signup/', ArticleSignUpView.as_view(), name='signup'),
-    path('article/<int:pk>/delete/', ArticleDeleteView.as_view(), name='article_delete')
+    path('article/<int:pk>/delete/', ArticleDeleteView.as_view(), name='article_delete'),
     path('webhook/', DeployWebhookView.as_view(), name='deploy_webhook'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
