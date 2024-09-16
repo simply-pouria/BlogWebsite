@@ -129,17 +129,22 @@ class ArticleDeleteView(RoleRequiredMixin, DeleteView):
 
 logger = logging.getLogger(__name__)
 
+
 @method_decorator(csrf_exempt, name='dispatch')
 class DeployWebhookView(View):
-
     def post(self, request, *args, **kwargs):
-        script_path = '/home/PouriaMoradpour/BlogWebsite/deploy.sh'
+        script_path = '/home/YOUR_PYTHONANYWHERE_USERNAME/YOUR_REPOSITORY/deploy.sh'
+
         if os.path.exists(script_path):
-            logger.info('Script exists. Running the deployment script.')
-            subprocess.run([script_path])
+            logger.info(f'Script exists at {script_path}. Running the script.')
+            try:
+                subprocess.run([script_path], check=True)
+            except subprocess.CalledProcessError as e:
+                logger.error(f'Error running the script: {e}')
+                return HttpResponse(f'Script execution failed: {e}', status=500)
         else:
             logger.error(f'Script not found at {script_path}')
-            return HttpResponse('Script not found', status=404)
+            return HttpResponse(f'Script not found at {script_path}', status=404)
 
         return HttpResponse('Deployment triggered')
 
