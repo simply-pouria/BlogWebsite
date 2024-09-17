@@ -9,6 +9,6 @@ class RoleRequiredMixin(View):
     def dispatch(self, request, *args, **kwargs):
         user_profile = request.user.userprofile
         if user_profile.role != self.required_role:
-            return HttpResponseForbidden("This page is only accessible for admins.")
+            return HttpResponseForbidden(f"This page is only accessible for {self.required_role}.")
         return super().dispatch(request, *args, **kwargs)
 
