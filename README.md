@@ -6,4 +6,4 @@ I have used Django, Materialize CSS, and Markdownx to build it.
 
 [![website-as-a-whole.png](https://i.postimg.cc/nVGpX7v1/website-as-a-whole.png)](https://postimg.cc/s1xt8MHB)
 
-I have a pretty documentation *[here](https://pouriamoradpour.pythonanywhere.com/article/4/)*
+I've written a pretty documentation *[here](https://pouriamoradpour.pythonanywhere.com/article/4/)*
