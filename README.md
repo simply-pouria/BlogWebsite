@@ -22,7 +22,7 @@ I kept the future roadmap in mind when designing the database, so I wouldn’t h
 For all my fellow database nerds out there, my schema for this website _does_ comply with 4NF & BCNF. Although, admittedly, this is not a complex design, and Django's ORM handles a lot of the heavy lifting. So normalizing such a database wasn’t a difficult task.
 
 
-[![db-drawing.png](https://i.postimg.cc/fy2PxwWM/db-drawing.png)](https://postimg.cc/N2Xbtvrn)
+[![db-drawing.png](https://i.postimg.cc/FzBPYDGR/db-drawing.png)](https://postimg.cc/V0X9T9xQ)
 
 
 I am currently using the SQLite database that Django itself provides, but I will soon switch to a proper MySQL or PostgreSQL database. Most of my views are Django's Generic Views, with a few methods overridden—mainly to track and save data, and protect it at the DB level. The Sign-Up view is still quite trivial and uses Django's `UserCreationForm` to add users to the `User` model (handled by signals to create a corresponding record in the `UserProfileModel`).
@@ -30,7 +30,7 @@ I am currently using the SQLite database that Django itself provides, but I will
 Due to some limitations that I’ll get to later, I was forced to host my website on PythonAnywhere (although I plan to change that soon), which doesn’t provide an automated deployment feature like Railway or Render.
 
 
-[![pipeline-drawing.png](https://i.postimg.cc/GhtVbszt/pipeline-drawing.png)](https://postimg.cc/KRXJNj6h)
+[![pipeline-drawing.png](https://i.postimg.cc/fbN8S37x/pipeline-drawing.png)](https://postimg.cc/JspN9z2n)
 
 
 So, I created a simple _what you could call a CI/CD pipeline_ (without tests, for now): a webhook on GitHub that sends a POST request to a view on my website whenever a commit is pushed. This triggers a Bash script that pulls the changes, migrates the database, and collects the static files. In non-technical terms, the website automatically updates itself whenever a change is made to its code.
