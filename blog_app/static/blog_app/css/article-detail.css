@@ -35,3 +35,11 @@ flex-direction: column;
     margin-top: 3em;
     margin-bottom: 3em;
 }
+
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* optional: to center the image */
+}
