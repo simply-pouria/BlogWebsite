@@ -2,11 +2,11 @@
 
 #### **You can see it *[here](https://pouriamoradpour.pythonanywhere.com/)***
 
-A Brief Story/Documentation
-### "_Just Get Your Work Out There_": A Solution Other Than Medium
+## A Brief Story/Documentation
+
 I do a lot of writing—about my _many_ thoughts on _many_ things! Recently, I was suggested a few times to publish my work. I also build a lot of projects—which I would love others to see. So, I took the next step like a developer(!): create a solution for it!
 ### _As Simple As It Gets_: What It Is
-The website you're on right now is the result. Well, just the start of it! It's simple: a homepage with what I felt was the right combination of flair and simplicity, pretty user authentication pages (login/sign-up), and the page you're currently viewing: an article page that is easy on eyes and doesn't prioritize form over function. It also supports text formatting, image embedding, etc., in the articles.
+ It's simple: a homepage with what I felt was the right combination of flair and simplicity, pretty user authentication pages (login/sign-up), and the page you're currently viewing: an article page that is easy on eyes and doesn't prioritize form over function. It also supports text formatting, image embedding, etc., in the articles.
 ### _My Site, My Choice!_: Design, Technical Choices, and Overview
 Since it was a Django application from the start, creating a static website wasn’t an option—especially with the roadmap I had in mind that required backend functionality. At the same time, the project didn’t demand a heavy JavaScript framework, so I opted for Materialize CSS, a responsive front-end framework inspired by Google’s Material Design principles (with a fork still maintained by the community).
 
