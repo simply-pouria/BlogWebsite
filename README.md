@@ -38,4 +38,4 @@ So, I created a simple _what you could call a CI/CD pipeline_ (without tests, fo
 I tend to do my writing in Obsidian, which uses Markdown syntax—and I’m very comfortable with it. That’s why I added functionality to submit my posts in Markdown syntax and see them rendered in the article page. I achieved this using Markdownx, which handles everything: from the editing space to live preview (though I use Obsidian instead anyway), to a DB field and the conversion of Markdown to HTML for rendering on the browser.
 
 
-THanks for Reading, Read The Full Blog Post here *[here](https://pouriamoradpour.pythonanywhere.com/article/4/)*
+Thanks for Reading, Read The Full Blog Post here *[here](https://pouriamoradpour.pythonanywhere.com/article/4/)*
