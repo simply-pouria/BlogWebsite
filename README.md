@@ -39,4 +39,4 @@ I tend to do my writing in Obsidian, which uses Markdown syntax—and I’m very
 
 [![website-as-a-whole.png](https://i.postimg.cc/nVGpX7v1/website-as-a-whole.png)](https://postimg.cc/s1xt8MHB)
 
-Read The Full Blog Post here *[here](https://pouriamoradpour.pythonanywhere.com/article/4/)*
+THanks for Reading, Read The Full Blog Post here *[here](https://pouriamoradpour.pythonanywhere.com/article/4/)*
