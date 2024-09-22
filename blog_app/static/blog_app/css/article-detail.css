@@ -46,14 +46,14 @@ img {
 }
 
 /* to keep the code snippets in the div on smaller screens */
-code {
+pre, code {
     max-width: 100%;
     overflow-x: auto;    /* horizontal scrolling */
     white-space: pre-wrap;  /* Allow line wrapping */
     word-wrap: break-word;  /* Break long words */
 }
 
-code {
+pre {
     background-color: #333;  /* Optional: Set background for the code block */
     color: #fff;  /* Optional: Set text color */
     padding: 10px;
@@ -61,7 +61,7 @@ code {
 }
 
 @media (max-width: 600px) {
-    code {
+    pre {
         font-size: 12px;  /*  Decrease font size on small screens */
     }
 }
