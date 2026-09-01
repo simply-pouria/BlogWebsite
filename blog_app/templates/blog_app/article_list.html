@@ -2,224 +2,321 @@
 <html lang="en">
 {% load static %}
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Computer Science undergraduate at the University of Isfahan interested in intelligent agents, multi-agent systems, algorithmic decision-making, and trustworthy intelligent systems.">
+    <title>Pouria Moradpour | Computer Science</title>
 
-    <title>Pouria's Blog</title>
-<!-- importing Materialize, Font Awsome -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- font awesome -->
+    <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/032ea820f5.js" crossorigin="anonymous"></script>
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
-    <!-- custom CSS for overriding Materialize -->
-   <link rel="stylesheet" href="{% static 'blog_app/css/article-list.css' %}">
-   <link rel="stylesheet" href="{% static 'blog_app/css/layout.css' %}">
-   <link rel="stylesheet" href="{% static 'blog_app/css/background.css' %}">
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
+    <!-- Existing custom styles -->
+    <link rel="stylesheet" href="{% static 'blog_app/css/article-list.css' %}">
+    <link rel="stylesheet" href="{% static 'blog_app/css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'blog_app/css/background.css' %}">
 </head>
 
-<!-- navbar -->
-<body>
-  <div class="navbar-fixed">
-    <nav class="nav-wrapper grey darken-4">
-      <div class="container">
-        <a href="#" class="brand-logo">
-            <img src="{% static 'blog_app/images/name.png' %}" alt="" class="responsive-img">
-        </a>
-        <a href="#" class="sidenav-trigger waves-effect waves-light" data-target="mobile-links">
-          <i class="fa-solid fa-bars fa-xl teal-text" ></i>
-        </a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="#contact-me " class="teal-text text-accent-2 waves-effect waves-light">Contact</a></li>
-          <li><a href="#about-me" class="teal-text text-accent-2 waves-effect waves-light">About Me</a></li>
-
-
-              {% if user.is_authenticated %}
-            <li class="teal-text ">
-
-                  Logged in as
-                  <span class="amber-text text-darken-2">{{user.username}}</span>
-            </li>
-
-            <li>
-                  <a href="{% url 'logout' %}?next={{ request.path }}" class="teal-text text-accent-2 tooltipped waves-effect waves-light" data-position="bottom" data-tooltip="Log Out">
-                      <i class="fa-solid fa-right-from-bracket fa-xl teal-text" ></i>
-                  </a>
-            </li>
-
-              {% else %}
-            <li>
-              <a href="{% url 'login' %}?next={{ request.path }}"
-                 class="btn teal lighten-2 grey-text text-darken-4 waves-effect waves-light">
-                  <i class="fa-solid fa-right-to-bracket fa-xl amber-text text-accent-2" ></i>
-                  Login
-              </a>
-            </li>
-
-             <li>
-              <a href="{% url 'blog_app:signup' %}?next={{ request.path }}"
-                 class=" teal-text waves-effect waves-light">
-                  <i class="fa-solid fa-user-plus fa-sm amber-text text-accent-2" ></i>
-                  Sign Up
-              </a>
-            </li>
-              {% endif %}
-
-        </ul>
-      </div>
-    </nav>
-  </div>
-
-  <!-- sidebar -->
-  <ul class="sidenav grey darken-4" id="mobile-links">
-      <li><a href="#contact-me" class="teal-text text-accent-2 waves-effect waves-light">Contact</a></li>
-      <li><a href="#about-me" class="teal-text text-accent-2 waves-effect waves-light">About Me</a></li>
-      <li>
-          {% if user.is_authenticated %}
-            <li class="teal-text">
-              <div class="container">
-              Logged in as
-              <span class="amber-text text-darken-2"> {{user.username}}
-                <a href="{% url 'logout' %}?next={{ request.path }}" class="teal-text text-accent-2 tooltipped waves-effect waves-light" data-position="bottom" data-tooltip="Log Out">
-                    <i class="fa-solid fa-right-from-bracket fa-xl teal-text" ></i>
+<body id="top">
+    <!-- navbar -->
+    <div class="navbar-fixed">
+        <nav class="nav-wrapper grey darken-4">
+            <div class="container">
+                <a href="#top" class="brand-logo" aria-label="Back to the top of the homepage">
+                    <img src="{% static 'blog_app/images/name.png' %}" alt="Pouria Moradpour" class="responsive-img">
                 </a>
-              </span>
-                  </div>
 
-            </li>
+                <a href="#" class="sidenav-trigger waves-effect waves-light" data-target="mobile-links" aria-label="Open navigation menu">
+                    <i class="fa-solid fa-bars fa-xl teal-text"></i>
+                </a>
 
-              {% else %}
-            <li>
-              <a href="{% url 'login' %}?next={{ request.path }}"
-                 class="btn teal lighten-2 grey-text text-darken-4 waves-effect waves-light">
-                  <i class="fa-solid fa-right-to-bracket fa-xl amber-text text-accent-2" ></i>
-                  Login
-              </a>
-            </li>
+                <ul class="right hide-on-med-and-down homepage-nav">
+                    <li><a href="#research-interests" class="teal-text text-accent-2 waves-effect waves-light">Research</a></li>
+                    <li><a href="#writing" class="teal-text text-accent-2 waves-effect waves-light">Writing</a></li>
+                    <li><a href="#about-me" class="teal-text text-accent-2 waves-effect waves-light">About</a></li>
+                    <li><a href="#contact-me" class="teal-text text-accent-2 waves-effect waves-light">Contact</a></li>
 
-            <li>
-              <a href="{% url 'blog_app:signup' %}?next={{ request.path }}"
-                 class=" teal-text waves-effect waves-light">
-                  <i class="fa-solid fa-user-plus fa-xl amber-text text-accent-2" ></i>
-                  Sign Up
-              </a>
-            </li>
-          {% endif %}
-
-  </ul>
-
-    <!-- article cards -->
-    <div class="container">
-    <div class="row">
-        <div class="col s12 l12">
-            <h2 class="teal-text text-accent-2 center-align">Blog <span class="amber-text text-lighten-1">Posts</span></h2>
-            <h6 class="teal-text text-darken-2 center-align">I would be really happy if you read these :)</h6>
-        </div>
-
-     {% for article in articles %}
-      <div class="col s12 l4">
-        <div class="card grey darken-4" style="border-radius: 15px;">
-          <div class="card-content">
-            <span class="card-title amber-text text-lighten-1">{{ article.title }}</span>
-            <div class="multi-line-truncate teal-text text-lighten-1">
-                <p>{{ article.formatted_markdown|safe }}</p>
+                    {% if user.is_authenticated %}
+                        <li class="nav-user-status teal-text">
+                            Logged in as
+                            <span class="amber-text text-darken-2">{{ user.username }}</span>
+                        </li>
+                        <li>
+                            <a href="{% url 'logout' %}?next={{ request.path }}"
+                               class="teal-text text-accent-2 tooltipped waves-effect waves-light"
+                               data-position="bottom"
+                               data-tooltip="Log Out"
+                               aria-label="Log out">
+                                <i class="fa-solid fa-right-from-bracket fa-xl teal-text"></i>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{% url 'login' %}?next={{ request.path }}"
+                               class="btn teal lighten-2 grey-text text-darken-4 waves-effect waves-light">
+                                <i class="fa-solid fa-right-to-bracket fa-xl amber-text text-accent-2"></i>
+                                Login
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'blog_app:signup' %}?next={{ request.path }}"
+                               class="teal-text waves-effect waves-light">
+                                <i class="fa-solid fa-user-plus fa-sm amber-text text-accent-2"></i>
+                                Sign Up
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
             </div>
-            <span class="grey-text">by {% for author in article.authors.all %}
-                {{ author.user.username }}{% if not forloop.last %}, {% endif %}
+        </nav>
+    </div>
+
+    <!-- mobile sidenav -->
+    <ul class="sidenav grey darken-4" id="mobile-links">
+        <li><a href="#research-interests" class="teal-text text-accent-2 waves-effect waves-light">Research</a></li>
+        <li><a href="#writing" class="teal-text text-accent-2 waves-effect waves-light">Writing</a></li>
+        <li><a href="#about-me" class="teal-text text-accent-2 waves-effect waves-light">About</a></li>
+        <li><a href="#contact-me" class="teal-text text-accent-2 waves-effect waves-light">Contact</a></li>
+        <li><div class="divider grey darken-3"></div></li>
+
+        {% if user.is_authenticated %}
+            <li>
+                <div class="sidenav-user-status teal-text">
+                    Logged in as
+                    <span class="amber-text text-darken-2">{{ user.username }}</span>
+                </div>
+            </li>
+            <li>
+                <a href="{% url 'logout' %}?next={{ request.path }}" class="teal-text text-accent-2 waves-effect waves-light">
+                    <i class="fa-solid fa-right-from-bracket teal-text"></i>
+                    Logout
+                </a>
+            </li>
+        {% else %}
+            <li>
+                <a href="{% url 'login' %}?next={{ request.path }}" class="teal-text text-accent-2 waves-effect waves-light">
+                    <i class="fa-solid fa-right-to-bracket amber-text text-accent-2"></i>
+                    Login
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'blog_app:signup' %}?next={{ request.path }}" class="teal-text text-accent-2 waves-effect waves-light">
+                    <i class="fa-solid fa-user-plus amber-text text-accent-2"></i>
+                    Sign Up
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+
+    <main class="homepage-main">
+        <!-- academic introduction -->
+        <section class="container homepage-section hero-section" aria-labelledby="hero-title">
+            <div class="row">
+                <div class="col s12 l10 offset-l1">
+                    <div class="academic-panel hero-panel">
+                        <p class="hero-eyebrow amber-text text-lighten-1">Computer Science Undergraduate · University of Isfahan</p>
+                        <h1 id="hero-title" class="teal-text text-accent-2">Pouria Moradpour</h1>
+                        <p class="hero-intro grey-text text-lighten-3">
+                            Interested in intelligent agents, multi-agent systems, artificial intelligence, and trustworthy &amp; sustainable intelligent systems.
+                        </p>
+                        <div class="hero-links" aria-label="Academic and professional profiles">
+                            <a href="https://github.com/simply-pouria"
+                               class="homepage-link-button waves-effect waves-light teal-text text-accent-2">
+                                <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                GitHub
+                            </a>
+                            <a href="https://www.linkedin.com/in/pouria-moradpour-005b31284/"
+                               class="homepage-link-button waves-effect waves-light teal-text text-accent-2">
+                                <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                                LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- research interests -->
+        <section class="container homepage-section scrollspy" id="research-interests" aria-labelledby="research-title">
+            <div class="row">
+                <div class="col s12">
+                    <div class="section-heading">
+                        <p class="section-kicker amber-text text-lighten-1">Academic focus</p>
+                        <h2 id="research-title" class="teal-text text-accent-2">Research <span class="amber-text text-lighten-1">Interests</span></h2>
+                    </div>
+
+                    <div class="academic-panel research-panel">
+                        <p class="section-lead grey-text text-lighten-3">
+                            I am interested in computational approaches to decision-making involving multiple agents, preferences, incentives, and limited resources.
+                        </p>
+                        <p class="interest-context teal-text text-lighten-2">Areas I am currently interested in exploring:</p>
+                        <div class="research-interest-list" aria-label="Research interests">
+                            <span class="chip research-chip">Intelligent Agents</span>
+                            <span class="chip research-chip">Multi-Agent Systems</span>
+                            <span class="chip research-chip">Preference &amp; Opponent Modelling</span>
+                            <span class="chip research-chip">Automated Negotiation</span>
+                            <span class="chip research-chip">Algorithmic Decision-Making</span>
+                            <span class="chip research-chip">Mechanism Design &amp; Resource Allocation</span>
+                            <span class="chip research-chip">Trustworthy Intelligent Systems</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- notes and writing -->
+        <section class="container homepage-section scrollspy" id="writing" aria-labelledby="writing-title">
+            <div class="row section-heading-row">
+                <div class="col s12 m8">
+                    <div class="section-heading">
+                        <p class="section-kicker amber-text text-lighten-1">From the blog</p>
+                        <h2 id="writing-title" class="teal-text text-accent-2">Notes <span class="amber-text text-lighten-1">&amp; Writing</span></h2>
+                        <p class="section-subtitle teal-text text-lighten-2">Technical notes, project reflections, and occasional writing.</p>
+                    </div>
+                </div>
+
+                {% if user_role == ADMIN_ROLE %}
+                    <div class="col s12 m4 admin-action-column">
+                        <a href="{% url 'blog_app:article_create' %}"
+                           class="btn-small teal lighten-2 grey-text text-darken-4 waves-effect waves-light admin-article-link">
+                            <i class="fa-solid fa-plus left amber-text text-darken-3" aria-hidden="true"></i>
+                            Add an Article
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="row articles-row">
+                {% for article in articles %}
+                    <div class="col s12 m6 l4 article-column">
+                        <article class="card grey darken-4 article-card">
+                            <div class="card-content">
+                                <h3 class="card-title amber-text text-lighten-1 article-title">{{ article.title }}</h3>
+                                <div class="multi-line-truncate article-excerpt teal-text text-lighten-1">
+                                    {{ article.formatted_markdown|safe }}
+                                </div>
+                                <p class="article-authors grey-text text-lighten-1">
+                                    by {% for author in article.authors.all %}
+                                        {{ author.user.username }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </p>
+                            </div>
+                            <div class="card-action article-card-action">
+                                <a href="{% url 'blog_app:article_detail' article.id %}"
+                                   class="teal-text text-accent-2 waves-effect waves-light">
+                                    <strong class="amber-text text-lighten-1">Read</strong> the article
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                {% empty %}
+                    <div class="col s12">
+                        <div class="academic-panel empty-articles-state">
+                            <p class="teal-text text-lighten-2">No articles available.</p>
+                        </div>
+                    </div>
                 {% endfor %}
-            </span>
-          </div>
-          <div class="card-action" style="border-radius: 0 0 15px 15px;">
-            <a href="{% url 'blog_app:article_detail' article.id %}" class="teal-text text-accent-2 waves-effect waves-light"><strong class="amber-text text-lighten-1"> Read</strong> The Blogpost</a>
-          </div>
-        </div>
-      </div>
+            </div>
+        </section>
 
-        {% empty %}
-        <p>No articles available.</p>
-       {% endfor %}
-    </div>
-    </div>
+        <!-- about -->
+        <section class="container homepage-section scrollspy" id="about-me" aria-labelledby="about-title">
+            <div class="row about-row">
+                <div class="col s12 m8 l8">
+                    <div class="section-heading">
+                        <p class="section-kicker amber-text text-lighten-1">Background</p>
+                        <h2 id="about-title" class="teal-text text-accent-2">About <span class="amber-text text-lighten-1">Me</span></h2>
+                    </div>
+                    <div class="academic-panel about-panel grey-text text-lighten-3">
+                        <p>
+                            I am a Computer Science undergraduate at the University of Isfahan, with academic interests at the intersection of artificial intelligence, algorithms, and mathematical logic.
+                        </p>
+                        <p>
+                            My interests include intelligent and multi-agent systems, preference and opponent modelling, artificial intelligence, and trustworthy &amp; sustainable intelligent systems. I am particularly interested in problems that combine theoretical reasoning with implementation and experimental evaluation.
+                        </p>
+                        <p>
+                            Alongside my coursework, I work on technical and research-oriented projects in computer science and maintain this website as a place for technical work, notes, reports, and occasional writing.
+                        </p>
+                    </div>
+                </div>
 
-    <!-- about me -->
-  <div class="container">
-      <div class="row">
-          <div class="col l7 s12">
-              <h3 class="teal-text text-accent-2 scrollspy" id="about-me">About<span class="amber-text text-lighten-1 "> Me</span></h3>
-              <div class="text-overlay">
-                  <strong class="teal-text text-lighten-2 left-align"  >
-                    Hey there!
-                    I am interested in computer science, mathematics, and programming. I love developing creative ideas with code and working on various projects that reflect these interests. Indeed, there is nothing quite like satisfaction if something you have been building opens its eyes.
+                <div class="col s12 m4 l3 offset-l1 about-portrait-column">
+                    <div class="portrait-shell">
+                        <img src="{% static 'blog_app/images/me.jpg' %}"
+                             alt="Portrait of Pouria Moradpour"
+                             class="responsive-img about-portrait">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                    Although I am currently an undergraduate student in Computer Science at the University of Isfahan, my self-motivation and curiosity drive me to learn continuously. I always get excited about entering a new frontier and learning new skills. Currently, as a student, I am focusing on learning and growing, but when it comes to your cool job offerings and internships that rhyme with my interests, I will most definitely consider working on them.
+        <!-- contact -->
+        <section class="container homepage-section scrollspy" id="contact-me" aria-labelledby="contact-title">
+            <div class="academic-panel contact-panel">
+                <div class="row contact-row">
+                    <div class="col s12 l5">
+                        <p class="section-kicker amber-text text-lighten-1">Contact</p>
+                        <h2 id="contact-title" class="teal-text text-accent-2">Get in <span class="amber-text text-lighten-1">Touch</span></h2>
+                        <p class="grey-text text-lighten-3 contact-intro">
+                            For academic, technical, or project-related conversations, these are the best places to reach me.
+                        </p>
+                    </div>
 
-                    Proficient in English, actively learning German, and fluent in Persian, I enjoy connecting with people across the world and collaborating on innovative ideas. <span class="amber-text text-lighten-1">Thanks for stopping by my site—I look forward to connecting!</span>
-                  </strong>
-              </div>
-          </div>
-          <div class="col push-l1 l3 vertical-adjust-img hide-on-med-and-down">
-              <img src="{% static 'blog_app/images/me.jpg' %}" alt="Custom Image" class="circle responsive-img">
-          </div>
-      </div>
-  </div>
+                    <div class="col s12 l7">
+                        <div class="contact-links primary-contact-links">
+                            <a class="contact-link tooltipped waves-effect waves-light"
+                               data-position="top"
+                               data-tooltip="pouriapmd83@gmail.com"
+                               href="mailto:pouriapmd83@gmail.com">
+                                <i class="fa-regular fa-envelope fa-lg amber-text text-lighten-1" aria-hidden="true"></i>
+                                <span>Email</span>
+                            </a>
+                            <a class="contact-link tooltipped waves-effect waves-light"
+                               data-position="top"
+                               data-tooltip="@simply-pouria"
+                               href="https://github.com/simply-pouria">
+                                <i class="fa-brands fa-github fa-lg amber-text text-lighten-1" aria-hidden="true"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a class="contact-link tooltipped waves-effect waves-light"
+                               data-position="top"
+                               data-tooltip="Pouria Moradpour"
+                               href="https://www.linkedin.com/in/pouria-moradpour-005b31284/">
+                                <i class="fa-brands fa-linkedin fa-lg amber-text text-lighten-1" aria-hidden="true"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                        </div>
 
-  <!-- contact me -->
-  <div class="container">
-      <div class="row">
-          <div class="col l8 s12" style="margin-top: 5em;">
-              <h4 class="teal-text text-accent-2 align-right"> Let's <span class="amber-text text-lighten-1"> Build </span> Something Great <span class="amber-text text-lighten-1">Together</span>! </h4>
-          </div>
+                        <div class="secondary-contact-links" aria-label="Other contact links">
+                            <a class="teal-text text-lighten-2 tooltipped waves-effect waves-light"
+                               data-position="top"
+                               data-tooltip="@Wunschsohn"
+                               href="https://t.me/Wunschsohn">
+                                <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+                                Telegram
+                            </a>
+                            <a class="teal-text text-lighten-2 tooltipped waves-effect waves-light"
+                               data-position="top"
+                               data-tooltip="@PouriaMoradpour"
+                               href="https://x.com/PouriaMoradpour">
+                                <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                                X
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-          <div class="col l3 s12">
-              <div class="text-overlay">
-                  <h5 class="teal-text text-accent-2 scrollspy " id="contact-me" >Contact <span class="amber-text text-lighten-1">Me</span>!</h5>
-                      <ul>
-                          <li class="vertical-adjust-icon">
-                              <a class="teal-text text-accent-2 tooltipped waves-effect waves-light" data-position="left" data-tooltip="pouriapmd83@gmail.com" href="mailto:https://pouriapmd83@gmail.com"><i class="fa-regular fa-envelope fa-xl amber-text text-lighten-1" ></i> Mail</a>
-                          </li>
+    {% include 'blog_app/footer.html' %}
 
-                          <li class="vertical-adjust-icon">
-                              <a class="teal-text text-accent-2 tooltipped waves-effect waves-light"  data-position="left" data-tooltip="@Wunschsohn" href="https://t.me/Wunschsohn"><i class="fa-brands fa-telegram fa-xl amber-text text-lighten-1"></i> Telegram</a>
-                          </li>
-
-                          <li class="vertical-adjust-icon">
-                              <a class="teal-text text-accent-2 tooltipped waves-effect waves-light"  data-position="left" data-tooltip="@simply-pouria" href="https://github.com/simply-pouria"><i class="fa-brands fa-github fa-xl amber-text text-lighten-1"></i> GitHub</a>
-                          </li>
-
-                          <li class="vertical-adjust-icon">
-                              <a class="teal-text text-accent-2 tooltipped waves-effect waves-light"  data-position="left" data-tooltip="@PouriaMoradpour" href="https://x.com/PouriaMoradpour"><i class="fa-brands fa-x-twitter fa-xl amber-text text-lighten-1"></i> X</a>
-                          </li>
-
-                          <li class="vertical-adjust-icon">
-                              <a class="teal-text text-accent-2 tooltipped waves-effect waves-light" data-position="left" data-tooltip="Pouria Moradpour" href="https://www.linkedin.com/in/pouria-moradpour-005b31284/"><i class="fa-brands fa-linkedin fa-xl amber-text text-lighten-1"></i> LinkedIn</a>
-                          </li>
-
-
-                      </ul>
-              </div>
-          </div>
-
-          </div>
-      </div>
-
-
-
-{% if user_role == ADMIN_ROLE %}
-<a href="{% url 'blog_app:article_create' %}">Add an Article!</a>
-{%endif%}
-
-{% include 'blog_app/footer.html' %}
-
-  <!-- jQuery for adding logic to elements -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-  <script src="{% static 'blog_app/js/base.js' %}"></script>
-
+    <!-- Existing JavaScript dependencies and Materialize initialization -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="{% static 'blog_app/js/base.js' %}"></script>
 </body>
-
 </html>
-
-
-

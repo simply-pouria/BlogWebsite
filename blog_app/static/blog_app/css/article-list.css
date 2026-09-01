@@ -1,17 +1,455 @@
+/* Homepage-specific styling. The shared navbar, overlay and fixed background
+   remain owned by layout.css and background.css. */
 
-/* Custom multi-line truncation (Materialize has only one-line) */
-.multi-line-truncate {
-  display: -webkit-box;
-  -webkit-line-clamp: 5; /* Number of lines to show before truncating */
-  -webkit-box-orient: vertical;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+}
+
+.homepage-main {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.homepage-section {
+  padding-top: 3.5rem;
+  padding-bottom: 1rem;
+}
+
+.hero-section {
+  padding-top: 4.5rem;
+}
+
+.academic-panel {
+  position: relative;
+  border: 1px solid rgba(38, 166, 154, 0.3);
+  border-radius: 15px;
+  background: rgba(20, 20, 20, 0.9);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
+.hero-panel {
+  padding: clamp(1.5rem, 4vw, 3.25rem);
+}
+
+.hero-eyebrow,
+.section-kicker {
+  margin: 0 0 0.7rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.hero-panel h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 7vw, 4.6rem);
+  line-height: 1.05;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.hero-intro {
+  max-width: 760px;
+  margin: 1.4rem 0 0;
+  font-size: clamp(1.05rem, 2vw, 1.28rem);
+  line-height: 1.75;
+}
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.8rem;
+}
+
+.homepage-link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 42px;
+  padding: 0.55rem 0.95rem;
+  border: 1px solid rgba(100, 255, 218, 0.42);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.homepage-link-button:focus,
+.homepage-link-button:hover {
+  background: rgba(38, 166, 154, 0.14);
+}
+
+.section-heading {
+  margin-bottom: 1.15rem;
+}
+
+.section-heading h2,
+.contact-panel h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.15;
+  font-weight: 500;
+}
+
+.section-subtitle,
+.section-lead,
+.contact-intro {
+  line-height: 1.7;
+}
+
+.section-subtitle {
+  margin: 0.65rem 0 0;
+}
+
+.research-panel,
+.about-panel,
+.contact-panel,
+.empty-articles-state {
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.section-lead {
+  max-width: 850px;
+  margin-top: 0;
+  font-size: 1.06rem;
+}
+
+.interest-context {
+  margin: 1.45rem 0 0.8rem;
+  font-size: 0.92rem;
+}
+
+.research-interest-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.research-chip {
+  height: auto;
+  min-height: 32px;
+  margin: 0;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid rgba(255, 193, 7, 0.34);
+  border-radius: 16px;
+  background-color: rgba(66, 66, 66, 0.82);
+  color: #b2dfdb;
+  line-height: 1.35;
+  white-space: normal;
+}
+
+.section-heading-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.admin-action-column {
+  padding-bottom: 1.2rem !important;
+  text-align: right;
+}
+
+.admin-article-link {
+  border-radius: 7px;
+  text-transform: none;
+}
+
+.articles-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.article-column {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.article-card {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
   overflow: hidden;
+  border: 1px solid rgba(38, 166, 154, 0.22);
+  border-radius: 15px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+.article-card .card-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.article-title {
+  margin: 0 0 1rem !important;
+  font-size: 1.42rem !important;
+  line-height: 1.3 !important;
+  overflow-wrap: anywhere;
+}
+
+/* Keep rendered Markdown excerpts useful without allowing long posts, images,
+   headings or code to break the three-card homepage layout. */
+.multi-line-truncate,
+.article-excerpt {
+  display: -webkit-box;
+  max-height: 12rem;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  color: inherit;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
   text-overflow: ellipsis;
 }
 
-.vertical-adjust-img {
-margin-top: 7em;
+.article-excerpt > :first-child {
+  margin-top: 0;
 }
 
-.vertical-adjust-icon {
-margin-top: 1em;
+.article-excerpt img {
+  max-width: 100%;
+  height: auto;
+}
+
+.article-excerpt pre,
+.article-excerpt code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.article-excerpt h1,
+.article-excerpt h2,
+.article-excerpt h3,
+.article-excerpt h4,
+.article-excerpt h5,
+.article-excerpt h6 {
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.article-authors {
+  margin: 1.2rem 0 0;
+  font-size: 0.88rem;
+  overflow-wrap: anywhere;
+}
+
+.article-card-action {
+  border-radius: 0 0 15px 15px;
+}
+
+.article-card-action a {
+  display: inline-block;
+}
+
+.empty-articles-state {
+  text-align: center;
+}
+
+.empty-articles-state p {
+  margin: 0;
+}
+
+.about-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.about-panel {
+  line-height: 1.8;
+}
+
+.about-panel p:first-child {
+  margin-top: 0;
+}
+
+.about-panel p:last-child {
+  margin-bottom: 0;
+}
+
+.about-portrait-column {
+  display: flex;
+  justify-content: center;
+  padding-top: 1.5rem !important;
+}
+
+.portrait-shell {
+  width: min(100%, 280px);
+  padding: 0.45rem;
+  border: 1px solid rgba(255, 193, 7, 0.38);
+  border-radius: 50%;
+  background: rgba(20, 20, 20, 0.82);
+}
+
+.about-portrait {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.contact-panel {
+  margin-bottom: 3rem;
+}
+
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.contact-intro {
+  max-width: 520px;
+}
+
+.contact-links {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.primary-contact-links {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.contact-link {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 50px;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid rgba(38, 166, 154, 0.28);
+  border-radius: 9px;
+  background: rgba(66, 66, 66, 0.5);
+  color: #64ffda;
+  overflow-wrap: anywhere;
+}
+
+.contact-link:focus,
+.contact-link:hover {
+  border-color: rgba(255, 193, 7, 0.55);
+  background: rgba(66, 66, 66, 0.78);
+}
+
+.secondary-contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.2rem;
+  margin-top: 1rem;
+}
+
+.secondary-contact-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0;
+}
+
+.sidenav-user-status {
+  padding: 0 32px;
+  line-height: 48px;
+  overflow-wrap: anywhere;
+}
+
+.nav-user-status {
+  padding: 0 0.6rem;
+  white-space: nowrap;
+}
+
+@media only screen and (max-width: 992px) {
+  .homepage-section {
+    padding-top: 2.8rem;
+  }
+
+  .hero-section {
+    padding-top: 3rem;
+  }
+
+  .about-portrait-column {
+    align-self: flex-start;
+  }
+
+  .primary-contact-links {
+    margin-top: 1rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  html {
+    scroll-padding-top: 70px;
+  }
+
+  .homepage-section {
+    padding-top: 2.25rem;
+  }
+
+  .hero-section {
+    padding-top: 2rem;
+  }
+
+  .hero-panel,
+  .research-panel,
+  .about-panel,
+  .contact-panel {
+    padding: 1.2rem;
+  }
+
+  .hero-panel h1 {
+    font-size: 2.35rem;
+  }
+
+  .hero-intro {
+    font-size: 1rem;
+  }
+
+  .research-interest-list {
+    gap: 0.5rem;
+  }
+
+  .research-chip {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .admin-action-column {
+    padding-bottom: 1rem !important;
+    text-align: left;
+  }
+
+  .article-column {
+    margin-bottom: 1rem;
+  }
+
+  .about-portrait-column {
+    padding-top: 1.5rem !important;
+  }
+
+  .portrait-shell {
+    width: min(72vw, 240px);
+  }
+
+  .primary-contact-links {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-link {
+    justify-content: flex-start;
+  }
+
+  .secondary-contact-links {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
